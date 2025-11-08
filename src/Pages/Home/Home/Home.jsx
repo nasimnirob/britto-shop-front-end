@@ -16,10 +16,19 @@ const Home = () => {
       <Helmet>
         <title>Britto Shop | Home</title>
       </Helmet>
-      <Banner />
-      <Category />
-      <SectionTittle subHeading='Popular Product' heading='Our Popular Products' ></SectionTittle>
-      {/* <div class="flex text-center justify-center text-white font-semibold">
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] ">
+        <Banner />
+
+          <Category />
+      </div>
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-white">
+        <div className="max-w-[2000px] mx-auto px-2 lg:px-2">
+        </div>
+      </div>
+
+      <div className="">
+        <SectionTittle subHeading='Popular Product' heading='Our Popular Products' ></SectionTittle>
+        {/* <div class="flex text-center justify-center text-white font-semibold">
         <p class="bg-blue-500 w-48 h-9 py-1 text-xl  [clip-path:polygon(10%_0%,100%_0%,90%_100%,0%_100%)] mr-[-40px]">
           Buy Now
         </p>
@@ -27,15 +36,16 @@ const Home = () => {
           Add to Cart
         </p>
       </div> */}
-      <div className="mt-10">
-        <ProductsCategory data={popularData}></ProductsCategory>
+        <div className="mt-10">
+          <ProductsCategory data={popularData}></ProductsCategory>
+        </div>
+
+        <Feature></Feature>
+        <div className="">
+          <Cover />
+        </div>
       </div>
-      
-      <Feature></Feature>
-      <div className="">
-        <Cover />
-      </div>
-      
+
     </div>
   );
 };

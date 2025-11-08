@@ -90,7 +90,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 0);
+      setIsSticky(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -169,11 +169,10 @@ const Navbar = () => {
       >
         <div
           onClick={() => setDropdown((prev) => !prev)}
-          className={`group select-none z-20 ${
-            matchedCategory
-              ? "text-orange-400 text-base lg:px-2 lg:py-1.5 py-1 xl:px-5"
-              : "text-inherit hover:text-orange-400 text-base lg:px-2 lg:py-1.5 py-1 xl:px-5"
-          }`}
+          className={`group select-none z-20 ${matchedCategory
+            ? "text-orange-400 text-base lg:px-2 lg:py-1.5 py-1 xl:px-5"
+            : "text-inherit hover:text-orange-400 text-base lg:px-2 lg:py-1.5 py-1 xl:px-5"
+            }`}
         >
           <h2 className="group  flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
             <span>
@@ -300,189 +299,180 @@ const Navbar = () => {
     </>
   );
   return (
-    <div
-      ref={menuRef}
-      className={`navbar ${
-        isSticky
-          ? "fixed bg-black/50 text-white shadow-md"
-          : "relative bg-white text-black dark:text-white dark:bg-black"
-      } z-30 max-w-screen backdrop-blur-[6px] transition-all duration-300 shadow-md `}
-    >
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div
-  onClick={handleToggle}
-  role="button"
-  className="px-4 py-[7px] lg:hidden "
->
-  {open ? (
-    <AiOutlineClose className="h-6 w-6 " />
-  ) : (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 "
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M4 6h16M4 12h8m-8 6h16"
-      />
-    </svg>
-  )}
-</div>
+    <div className={`w-full fixed top-0 left-0 z-30 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md" : "bg-transparent"
+      }`}>
+      <div
+        ref={menuRef}
+        className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px-4 ${isSticky ? "text-white" : "text-black dark:text-white"
+          }`}
+      >
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div
+              onClick={handleToggle}
+              role="button"
+              className="px-4 py-[7px] lg:hidden "
+            >
+              {open ? (
+                <AiOutlineClose className="h-6 w-6 " />
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 "
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              )}
+            </div>
 
-          <ul
-            className={
-              open
-                ? " bg-gray-800  shadow-sm backdrop-blur-[30px]  h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white hover:text-orange-400"
-                : "hidden -left-80 text-white hover:text-orange-400 "
-            }
-          >
-            {navLink}
-          </ul>
+            <ul
+              className={
+                open
+                  ? " bg-gray-800  shadow-sm backdrop-blur-[30px]  h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white hover:text-orange-400"
+                  : "hidden -left-80 text-white hover:text-orange-400 "
+              }
+            >
+              {navLink}
+            </ul>
 
-          {/* <ul
+            {/* <ul
                         className={open ? 'bg-black shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen opacity-40 mt-3 w-56 p-2 z-40 fixed left-0 ' : 'hidden -left-80 text-white hover:text-orange-400'}>
                         {navLink}
                     </ul> */}
-        </div>
-        <NavLink to="/" className="px-1 sm:px-5">
-          <div className="flex flex-col items-center w-fit text-center">
-            <span className="text-sm sm:text-base lg:text-xl text-orange-400 uppercase ">
-              Britto Shop
-            </span>
-            <span className="font-normal text-[8.7px] sm:text-[10px] lg:text-[12px] text-inherit hover:text-orange-400 uppercase tracking-widest">
-              E C O M M E R C E
-            </span>
           </div>
-        </NavLink>
+          <div className="flex flex-row  items-center lg:gap-1 md:gap-  w-full">
+            <NavLink to="/" className="px- sm:px-5 md:px-3  lg:w-2/4 md:w-4/4 w-full">
+              <div className="flex flex-col items-center w-fit text-center">
+                <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
+                  Britto Shop
+                </span>
+                <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
+                  E C O M M E R C E
+                </span>
+              </div>
+            </NavLink>
 
-        <div className="">
-          <div className="fixed lg:right-50 lg:left-50 lg:top-[17px] top-4 left-60 lg:w-80 md:block hidden">
-            <div className="flex items-center w-full rounded-md overflow-hidden border border-[#fb923c] text-center justify-center">
-              <input
-                className="font-extralight font-poppins w-full px-3 py-1.5 bg-black/5 placeholder:text-sm text-base outline-none ring-0 focus:outline-none rounded-l-[7px]"
-                type="search"
-                placeholder="Enter product name"
-              />
-              <button className="h-9 w-9 flex items-center justify-center bg-[#fb923c] hover:bg-yellow-500 transition text-black">
-                <CiSearch className="absolute" />
-              </button>
-            </div>
+
+            
+
           </div>
         </div>
 
-        {/* <div className="">
-          <div className="px- fixed lg:right-50 lg:left-50 lg:top-[17px] top-4 left-60 lg:w-80   md:block hidden">
-            <div className=" flex items-center w-full rounded-md overflow-hidden  bg- border border-[#fb923c] text-center justify-center">
-              <input
-                className="text- w-full px-3 py-1 bg-black/5 backdrop-blur-none place font-thin  placeholder:text-base  text-lg  bg- outline-none ring-0 focus:outline-none rounded-l-[7px]"
-                type="search"
-                placeholder="Enter product name"
-              />
-              <button className="h-9 w-9 flex items-center justify-center bg-[#fb923c] hover:bg-yellow-500 transition text-black">
-                <CiSearch className="absolute" />
-              </button>
-            </div>
+        <div className="navbar-center hidden lg:flex md:block  items-center justify-center">
+          <div className="  lg:w-full  ">
+              <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border border-dashed border-[#fb923c] text-center justify-center">
+                <input
+                  className="font-extralight font-poppins w-full px-3 py-2 bg-black/5 placeholder:text-sm text-base outline-none ring-0 focus:outline-none rounded-l-[5px]"
+                  type="search"
+                  placeholder="Search product name"
+                />
+                <button className="h-10 w-9 flex items-center justify-center bg-[#fb923c] hover:bg-yellow-500 transition text-black border-l border-dashed">
+                  <CiSearch className="absolute" />
+                </button>
+              </div>
+            </div>  
           </div>
-        </div> */}
+
+        <div className="navbar-end ">
+
+          <div
+            onClick={handleProfileToggle}
+            className=" ml-1 mr-1 cursor-pointer flex"
+          >
+            {/* Profile Button */}
+            <button>
+              {user?.photoURL ? (
+                <img
+                  className="rounded-full p-1 w-10 h-10"
+                  src={user.photoURL}
+                  alt="Profile"
+                />
+              ) : (
+                <RxPerson className="text-4xl rounded-full border border-yellow-700 p-1 lg:hidden" />
+              )}
+            </button>
+
+            {/* Dropdown Panel */}
+            {openProfile && (
+              <div className="absolute right-0 top-[64px] lg:mt- w-64 bg-white rounded-b-lg shadow-lg border z-10">
+                <div className="flex flex-col items-center p-4">
+                  {user ? (
+                    <img
+                      className="w-20 h-20 rounded-full border-2 border-gray-100"
+                      src={user?.photoURL || <RxPerson />}
+                      alt="Profile"
+                    />
+                  ) : (
+                    <span>
+                      <RxPerson className="w-16 h-16 text-black rounded-full p-1" />
+                    </span>
+                  )}
+                  <h3 className="mt-3 font-semibold text-gray-800">
+                    {user?.displayName || t("Guest User")}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {user?.email || "guest@example.com"}
+                  </p>
+                </div>
+
+                <LanguageSelector></LanguageSelector>
+
+                <div className="border-t">
+                  {user ? (
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-center text-red-600 py-2 hover:bg-gray-100"
+                    >
+                      {t("Logout")}
+                    </button>
+                  ) : (
+                    <div className="flex flex-col p-2">
+                      <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                          `py-2 px-4 rounded text-center ${isActive ? "text-orange-400" : "text-gray-800"
+                          } hover:bg-gray-100`
+                        }
+                      >
+                        {t("Login")}
+                      </NavLink>
+                      <NavLink
+                        to="/register"
+                        className={({ isActive }) =>
+                          `py-2 px-4 rounded text-center ${isActive ? "text-orange-400" : "text-gray-800"
+                          } hover:bg-gray-100`
+                        }
+                      >
+                        {t("Register")}
+                      </NavLink>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          <div>
+            <button
+              onClick={toggleTheme}
+              className="text-3xl flex items-center pl-1 pr-1 text-black dark:text-white hover:text-orange-400 text-inherit dark:text-"
+            >
+              {theme === "dark" ? <BiSun /> : <BiMoon />}
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="navbar-center hidden lg:flex"></div>
-      <div className="navbar-end ">
-        <ul className="menu menu-horizontal lg:px-1 px-0 hidden lg:flex ">
+      <div className="lg:flex items-center w-full justify-center  bg-black/80 text-white md:flex hidden">
+        <ul className="menu menu-horizontal lg:px-1 px-0 bg- dark:bg-">
           {navLink}
         </ul>
-        <div
-          onClick={handleProfileToggle}
-          className=" ml-1 mr-1 cursor-pointer flex"
-        >
-          {/* Profile Button */}
-          <button>
-            {user?.photoURL ? (
-              <img
-                className="rounded-full p-1 w-12 h-12"
-                src={user.photoURL}
-                alt="Profile"
-              />
-            ) : (
-              <RxPerson className="text-4xl rounded-full p-1 hidden" />
-            )}
-          </button>
-
-          {/* Dropdown Panel */}
-          {openProfile && (
-            <div className="absolute right-0 top-[64px] lg:mt-2 w-64 bg-white rounded-b-lg shadow-lg border z-10">
-              <div className="flex flex-col items-center p-4">
-                {user ? (
-                  <img
-                    className="w-20 h-20 rounded-full border-2 border-gray-100"
-                    src={user?.photoURL || <RxPerson />}
-                    alt="Profile"
-                  />
-                ) : (
-                  <span>
-                    <RxPerson className="w-16 h-16 text-black rounded-full p-1" />
-                  </span>
-                )}
-                <h3 className="mt-3 font-semibold text-gray-800">
-                  {user?.displayName || t("Guest User")}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {user?.email || "guest@example.com"}
-                </p>
-              </div>
-
-              <LanguageSelector></LanguageSelector>
-
-              <div className="border-t">
-                {user ? (
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-center text-red-600 py-2 hover:bg-gray-100"
-                  >
-                    {t("Logout")}
-                  </button>
-                ) : (
-                  <div className="flex flex-col p-2">
-                    <NavLink
-                      to="/login"
-                      className={({ isActive }) =>
-                        `py-2 px-4 rounded text-center ${
-                          isActive ? "text-orange-400" : "text-gray-800"
-                        } hover:bg-gray-100`
-                      }
-                    >
-                      {t("Login")}
-                    </NavLink>
-                    <NavLink
-                      to="/register"
-                      className={({ isActive }) =>
-                        `py-2 px-4 rounded text-center ${
-                          isActive ? "text-orange-400" : "text-gray-800"
-                        } hover:bg-gray-100`
-                      }
-                    >
-                      {t("Register")}
-                    </NavLink>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-        <div>
-          <button
-            onClick={toggleTheme}
-            className="text-3xl flex items-center pl-1 pr-1 text-black dark:text-white hover:text-orange-400 text-inherit dark:text-"
-          >
-            {theme === "dark" ? <BiSun /> : <BiMoon />}
-          </button>
-        </div>
       </div>
     </div>
   );
