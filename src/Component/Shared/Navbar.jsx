@@ -299,11 +299,11 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className={`w-full fixed top-0 left-0 z-30 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px]" : "bg-transparent rounded-b-[4.5px]"
+    <div className={`w-full fixed top-0 left-0 z-30 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px] text-white" : "bg-transparent rounded-b-[4.5px] text-black dark:text-white"
       }`}>
       <div
         ref={menuRef}
-        className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white" : "text-black dark:text-white"
+        className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white " : "text-black dark:text-white"
           }`}
       >
         <div className="navbar-start">
@@ -349,7 +349,7 @@ const Navbar = () => {
                     </ul> */}
           </div>
           <div className="flex flex-row  items-center lg:gap-3 md:gap-  w-full">
-            <NavLink to="/" className="px- sm:px-5 md:px-3  lg:w-2/4 md:w-4/4 w-full">
+            <NavLink to="/" className="px- sm:px-5 md:px-2  lg:w-2/4 md:w-4/4 w-full">
               <div className="flex flex-col items-center w-fit text-center">
                 <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
                   Britto Shop
@@ -359,10 +359,6 @@ const Navbar = () => {
                 </span>
               </div>
             </NavLink>
-
-
-
-
           </div>
         </div>
 
@@ -384,10 +380,6 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end ">
-
-
-
-
 
           <div className="relative group ml-1  cursor-pointer flex justify-center items-center">
             {
@@ -470,7 +462,7 @@ const Navbar = () => {
                 </button>
               </div>
 
-              <div className="flex flex-col items-center p-4">
+              <div className="flex flex-col items-center p-4 text-black dark:text-white">
                 {user ? (
                   <img
                     className="w-20 h-20 rounded-full border border-gray-100 dark:border-gray-600"
@@ -486,7 +478,7 @@ const Navbar = () => {
                   {user?.displayName || t("Guest User")}
                 </h3>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400 ">
                   {user?.email || "guest@example.com"}
                 </p>
               </div>
@@ -504,7 +496,7 @@ const Navbar = () => {
                     <NavLink
                       to="/login"
                       className={({ isActive }) =>
-                        `py-2 px-4 text-center ${isActive ? "text-orange-400" : ""
+                        `py-2 px-4 text-center text-black dark:text-white ${isActive ? "text-orange-400" : ""
                         } hover:bg-gray-100 dark:hover:bg-gray-700`
                       }
                     >
@@ -514,7 +506,7 @@ const Navbar = () => {
                     <NavLink
                       to="/register"
                       className={({ isActive }) =>
-                        `py-2 px-4 text-center border-t ${isActive ? "text-orange-400" : ""
+                        `py-2 px-4 text-center text-black dark:text-white border-t ${isActive ? "text-orange-400" : ""
                         } hover:bg-gray-100 dark:hover:bg-gray-700`
                       }
                     >
