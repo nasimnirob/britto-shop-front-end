@@ -27,7 +27,7 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* ✅ Navbar full width (no container limit) */}
-      <div className="lg:mt-[105px] mt-[115px]">
+      <div className="lg:mt-[105px] md:mt-[105px] mt-[106px]">
         <Navbar />
       </div>
 
@@ -40,7 +40,11 @@ const MainLayout = () => {
       </main>
 
       {/* ✅ Footer full width */}
-      <Footer />
+      <div className="">
+        <div className=" ">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 };

@@ -54,19 +54,19 @@ const Router = createBrowserRouter([
                 element: <Navigate to="/orders/electronic" replace />,
             },
 
+            {
+                path: '/login',
+                errorElement: <Error />,
+                element: <Login />
+            }
+            ,
+            {
+                path: '/register',
+                errorElement: <Error />,
+                element: <Register />
+            }
         ]
 
     },
-    {
-        path: '/login',
-        errorElement: <Error />,
-        element: <Login />
-    }
-    ,
-    {
-        path: '/register',
-        errorElement: <Error />,
-        element: <Register />
-    }
 ])
 export default Router;

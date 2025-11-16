@@ -126,13 +126,6 @@ const Register = () => {
                   <FaFacebook className="text-lg text-blue-500" />
                 </div>
               </div>
-              {/* <div className="bg-[#438AFE] rounded-full flex items-center h-[45px] px-2 gap-2">
-                                                        <div>
-                                                            <p className="rounded-full  ">Continue With
-                                                            </p>
-                                                        </div>
-                                                        <div><FaFacebook /></div>
-                                                    </div> */}
             </div>
 
             <p className="mb-0 mt-2 pt-1 text-sm font-semibold text-center text-[#7C7C7C]">

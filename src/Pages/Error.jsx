@@ -11,7 +11,7 @@ const Error = () => {
                 <h1 className='text-6xl text-red-500 '>Page Not Found | 404</h1>
                 <NavLink to='/'><p className='btn btn-error text-lg'>go to home</p></NavLink>
             </div>
-            <Footer></Footer>
+            
         </>
     );
 };

@@ -1,4 +1,4 @@
-import { FaGithub } from "react-icons/fa";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io";
 
 const Footer = () => {
@@ -19,27 +19,21 @@ const Footer = () => {
                 </aside>
                 <nav className="">
                     <h1 className="text-xl p-2 text-center w-full">Follow US</h1>
-                    <h6 className="footer-title text-white font-poppins font-extralight">Join us on Social Media</h6>
+                    <h6 className="footer-title text-white font-poppins font-extralight text-lg">Join us on Social Media</h6>
                     <div className="grid grid-flow-col gap-8 w-full  px-5">
                         <a href="https://github.com/nasimnirob" target="_blank">
-                            <FaGithub className=" w-6 h-6" />
+                            <FaGithub className=" w-10 h-10 hover:text-yellow-500" />
 
                         </a>
                         <a href="https://www.linkedin.com/in/nasim-nirob/" target="_blank">
-                            <IoLogoLinkedin className="w-6 h-6  text-white" />
+                            <IoLogoLinkedin className="w-11 h-11  text-white hover:text-yellow-500"  />
 
                         </a>
-                        <a href="https://www.facebook.com/nasim.nirob.dev" target="_blank" >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                className="fill-current">
-                                <path
-                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-                            </svg>
+                        <a href="https://www.facebook.com/nasim.nirob.official" target="_blank" className="  " >
+                            <FaFacebook className="w-10 h-10 hover:text-yellow-500 text-blue-600 bg-black outline-none rounded-3xl border-none " />
+
                         </a>
+                        
                     </div>
                 </nav>
                
