@@ -409,7 +409,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
           </div>
 
-          <div className="navbar-end flex justify-end items-center gap-0">
+          <div className="navbar-end flex justify-end items-center gap-1">
 
             <div ref={profileRef} className="relative group ml-1 flex justify-center items-center "
               onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
@@ -562,16 +562,20 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               </div>
             </div>
 
-            <div
-              ref={cartRef}
+            <div ref={cartRef} className="relative group mx-1 flex justify-center items-center "
               onMouseEnter={() => window.innerWidth >= 768 && setOpenCart(true)}
               // onMouseLeave={() => window.innerWidth >= 768 && setOpenCart(false)}
-              className="relative group ml-1 flex justify-center items-center "
             >
-              <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center w-12 h-12 ">
+              {/* <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center w-12 h-12 ">
                 <p className="hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full h-12 -mb-4 ">
-                  <PiBagLight className="text-[29px] lg:text-[29px] lg:hover:text-[30px] hover:text-[29px] items-center flex lg:ml-0 md:ml-0 ml-2 relative hover:bg-black/10 dark:hover:bg-black/15" />
+                  <PiBagLight className="text-[29px] lg:text-[29px] lg:hover:text-[30px] hover:text-[29px] items-center flex lg:ml-0 md:ml-0 ml-2 relative bg-black/10 dark:hover:bg-black/15 " />
                   <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white top-0 lg:right- xl:-right-1 md:right- right-2 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
+                </p>
+              </div> */}
+              <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center w-12 h-16 pl-1 -mb-4 -mt-4 py-2.5 hover:text-orange-400 border border-none">
+                <p className="hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px- py-1 xl:px- w-full h-12 -mb- ">
+                  <PiBagLight className="rounded-full p-1 w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15" />
+                  <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white -top-2.5 lg:right- xl:right-1 md:right-1 right-1 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
                 </p>
               </div>
 
