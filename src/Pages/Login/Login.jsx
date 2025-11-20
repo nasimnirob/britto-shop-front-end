@@ -23,17 +23,17 @@ const Login = () => {
       });
   };
   return (
-    <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-center  gap-10 items-center h- py-12 ">
+    <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-center py-12 w-full ">
       <Helmet>
         <title>Britto Shop | Login</title>
       </Helmet>
 
-      <div>
-        <div className="lg:border-r md:border-r border-gray-200 md:pr-10 lg:pr-10  w-full max-w-md">
+      <div className="xl:w-1/3 lg:w-1/2 md:w-1/2 flex justify-center  items-center lg:border-r md:border-r lg:pr-10 md:pr-10 xl:pr-10 border-gray-200 ">
+        <div className="  w-full max-w-md">
           {/* <h2 className="text-2xl text-orange-500 font-bold text-center mb-6">
               <NavLink to="/">Britto Shop</NavLink>
             </h2> */}
-          <p className="font-bold text-blue-500 uppercase py-2">Login</p>
+          <p className="font-bold text-blue-500 uppercase text-2xl py-5">Login</p>
           <p className="text-[#7C7C7C] pb-2 dark:text-gray-400">Login to access your account</p>
           <form className="space-y-4">
             <div className="relative mb-6 mt-5">
@@ -95,7 +95,7 @@ const Login = () => {
               <button className="text-gray-700 dark:text-gray-300 text-sm ">Forgot password?</button>
             </div>
 
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left ">
               <div className="flex items-center justify- py-4 rounded-md">
                 <button
                   type="button"
@@ -110,7 +110,7 @@ const Login = () => {
               <hr />
               <p className="my-2 text-black text-center dark:text-white">OR</p>
               <hr />
-              <div className=" px-1 mt-3 flex  items-center lg:justify-between  gap-1 uppercase text-white  h-[45px] w-full">
+              <div className=" px-1 mt-3 flex  items-center lg:justify-between justify-between  gap-1 uppercase text-white  h-[45px] w-full">
                 <div
                   onClick={handleGoogleLogin}
                   className="btn dark:text-white bg-white dark:bg-gray-900 dark:border-gray-600 dark:hover:bg-gray-800 text-black border border-gray-300 rounded-full flex items-center justify-center w- h-[45px] lg:px-[18px] px-2 lg:gap-2 gap-1 lg:text-base text-[13px]  hover:bg-gray-200"
@@ -146,19 +146,47 @@ const Login = () => {
           </form>
         </div>
       </div>
-    
-      <div >
-        <h1 className="text-blue-500 uppercase font-bold">New User?</h1>
-        <p className="mb-0 mt-2 pt-1 text-sm font-semibold text-center text-[#7C7C7C] dark:text-gray-400">
-          Don’t have an Account?  {"  "}
+
+      <div className="space-y-4 xl:w-1/3 lg:w-1/2 md:w-1/2 lg:pl- md:pl-10  max-w-md" >
+        <div>
+          <h1 className="text-blue-500 uppercase font-bold text-2xl py-5 hidden lg:block md:block">New Here? Register Now</h1>
+          <h1 className="text-blue-500  font-bold text-3xl py-5 mt-3 block lg:hidden md:hidden">Don’t have an Account?</h1>
+          <p className="text-black text-sm py- dark:text-gray-200 hidden lg:block md:block"><span className="text-base">Create your free account and unlock a smoother shopping experience.</span><br></br>
+           <span className=""> With your account, you can: </span><br />
+
+            ✔ Save your shipping addresses <br />
+
+            ✔ Track your orders in real-time <br />
+
+            ✔ Add items to your wishlist <br />
+
+            ✔ Get personalized recommendations <br />
+
+            ✔ Receive special offers & exclusive discounts <br />
+
+          </p>
+          <p className="mb-0 mt-2 pt-1 text-sm font-semibold text- text-[#7C7C7C] dark:text-gray-400 w-full py-3 hidden lg:block md:block">
+            Don’t have an Account?  {"  "} <br />
+          </p>
           <NavLink
             to="/register"
-            className="px-9 text-white text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 bg-black hover:bg-gray-800 dark:hover:bg-gray-900 py-2 rounded-sm"
+          // className="w-full border text-white text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 bg-black hover:bg-gray-800 dark:hover:bg-gray-900 py-2 rounded-sm"
           >
-            {"   "}
-            Register Here
+            {/* {"   "}
+            Register Here */}
+            <div className="max-w-md justify-center  flex items-center py-4 rounded-md">
+              <button
+                type="button"
+                className="btn border-none w-full h-[45px] bg-[#438AFE]- bg-black uppercase text-white rounded-sm hover:bg-gray-800 dark:hover:bg-gray-900 hover:text-white"
+                data-twe-ripple-init
+                data-twe-ripple-color="light"
+              >
+                Register Here
+              </button>
+            </div>
           </NavLink>
-        </p>
+        </div>
+
       </div>
 
     </div>
