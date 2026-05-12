@@ -16,11 +16,18 @@ const Home = () => {
       <Helmet>
         <title>Britto Shop | Home</title>
       </Helmet>
-      <div className="w-[99.72vw] relative left-1/2 right-1/2 -mx-[50vw] ">
+      {/* <div className="w-[99.72vw] relative left-1/2 right-1/2 -mx-[50vw] ">
           <Banner />
 
           <Category />
+      </div> */}
+
+      <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-x-clip">
+        <Banner />
+        <Category />
       </div>
+
+
       <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-white">
         <div className="max-w-[2000px] mx-auto px-2 lg:px-2">
         </div>

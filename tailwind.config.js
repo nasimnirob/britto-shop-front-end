@@ -1,24 +1,21 @@
-
-
 export default {
   darkMode: 'class',
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx,vue}", 
+    "./src/**/*.{js,ts,jsx,tsx,vue}",
   ],
   theme: {
-    
     extend: {
       fontFamily: {
         playfair: ['Playfair', 'serif'],
-         poppins: ['Poppins', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
         libre: ['Libre Baskerville', 'serif'],
         time: ['Times New Roman', 'time', 'serif']
       },
       colors: {
         primary: {
-          DEFAULT: "#ffffff", // light mode
-          dark: "#1f2937",    // dark mode
+          DEFAULT: "#ffffff",
+          dark: "#1f2937",
         },
         secondary: {
           DEFAULT: "#4b5563",
@@ -29,6 +26,35 @@ export default {
           dark: "#111827",
         },
       },
+      keyframes: {
+        slideInRight: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        slideInLeft: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        slideOutRight: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        slideOutLeft: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        slideInDown: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+      },
+      animation: {
+        "slide-in-right": "slideInRight 0.7s ease-in-out",
+        "slide-in-left": "slideInLeft 0.7s ease-in-out",
+        "slide-out-right": "slideOutRight 0.7s ease-in-out",
+        "slide-out-left": "slideOutLeft 0.7s ease-in-out",
+        "slide-in-down": "slideInDown 0.9s ease-in-out",
+      },
     },
   },
   plugins: [
@@ -36,4 +62,3 @@ export default {
     require('tailwind-scrollbar-hide'),
   ],
 }
-

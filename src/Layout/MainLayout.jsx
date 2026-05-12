@@ -42,9 +42,9 @@ const MainLayout = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
       )}
       {/* ✅ Main content area */}
-      <main className="flex-grow flex justify-center px-4">
+      <main className="flex-grow flex justify-center  overflow-x-clip">
         {/* এখানে Outlet max-w-2xl এর মধ্যে থাকবে */}
-        <div className="w-full max-w-[1524px]">
+        <div className="w-full max-w-[1524px] mx-auto ">
 
           <Outlet />
         </div>

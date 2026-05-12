@@ -5,7 +5,7 @@ import Cover from "../../../Component/Shared/Cover";
 
 const Cart = () => {
     return (
-        <div className="border-2 border-dashed border-red-500 px-9">
+        <div className="border border-dashed border-red-500 px-9">
             <Helmet>
                 <title>Britto Shop | Cart</title>
             </Helmet>
