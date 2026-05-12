@@ -28,6 +28,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
   const [dropdown, setDropdown] = useState(false);
   const [theme, toggleTheme] = useTheme();
   const [isSticky, setIsSticky] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
+
   // console.log(open)
 
   const { t } = useTranslation();
@@ -119,7 +121,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
   }, []);
 
   useEffect(() => {
-    if (openCart || openProfile || open) {
+    if (open) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -184,9 +186,6 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
           </h2>
         </NavLink>
       </li>
-      {/* <li>
-            <NavLink to='/wishlist' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px- px-2 xl:px-5' : 'text-white hover:text-orange-400 text-base lg:px- px-2 xl:px-5'}>Wishlist</NavLink>
-        </li> */}
       <li
         className="relative cursor-pointer lg:my-0  md:my-0 my-1"
         onMouseEnter={() => {
@@ -328,8 +327,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
     </>
   );
   return (
-    <div className="z-50 relative">
-      <div className={`w-full fixed top-0 left-0 z-30 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px] text-white" : "bg-transparent rounded-b-[4.5px] text-black dark:text-white"
+    <div className="z- relative">
+      <div className={`w-full fixed top-0 left-0 z-50 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px] text-white" : "bg-transparent rounded-b-[4.5px] text-black dark:text-white"
         }`}>
         <div
           className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white " : "text-black dark:text-white"
@@ -340,14 +339,14 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               <div
                 onClick={handleToggle}
                 role="button"
-                className="px-2.5 py-[7px] lg:hidden md:hidden"
+                className="w-10 h-10 hover:bg-black/10 rounded-full lg:hidden md:hidden select-none"
               >
                 {open ? (
-                  <AiOutlineClose className="h-6 w-6 " />
+                  <AiOutlineClose className="h-10 w-10 p-2" />
                 ) : (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 "
+                    className="h-10 w-10 p-2"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -364,21 +363,56 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
 
               <ul
                 ref={menuRef}
-                className={
-                  open
-                    ? " bg-gray-800  shadow-sm backdrop-blur-[30px]  h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white hover:text-orange-400"
-                    : "hidden -left-80 text-white hover:text-orange-400 "
-                }
+                className={`lg:hidden md:hidden fixed top-0 left-0 h-screen 
+    lg:w-[505px] md:w-[240px] sm:w-[320px] w-[300px]
+    z-40 bg-black/30 backdrop-blur-md
+    border border-gray-600 shadow-sm text-white
+    transform transition-transform duration-500 ease-in-out
+    ${open ? "translate-x-0" : "-translate-x-full"}
+  `}
               >
+                <div className="flex flex-row  lg:hidden md:hidden pt-2.5 pl-2 pb-4 bg-black/20">
+                  <div
+                    onClick={handleToggle}
+                    role="button"
+                    className="w-10 h-10 hover:bg-black/10 rounded-full lg:hidden md:hidden"
+                  >
+                    {open ? (
+                      <AiOutlineClose className="h-10 w-10 p-2" />
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-10 w-10 p-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 6h16M4 12h8m-8 6h16"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                  <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4 select-none">
+                    <NavLink to="/" className="px- ">
+                      <div className="flex flex-col items-center w-fit text-center">
+                        <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
+                          Britto Shop
+                        </span>
+                        <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
+                          E C O M M E R C E
+                        </span>
+                      </div>
+                    </NavLink>
+                  </div>
+                </div>
                 {navLink}
               </ul>
-
-              {/* <ul
-                        className={open ? 'bg-black shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen opacity-40 mt-3 w-56 p-2 z-40 fixed left-0 ' : 'hidden -left-80 text-white hover:text-orange-400'}>
-                        {navLink}
-                    </ul> */}
             </div>
-            <div className="flex flex-row  items-center lg:gap-3 md:gap- border w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4">
+            <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4">
               <NavLink to="/" className="px- ">
                 <div className="flex flex-col items-center w-fit text-center">
                   <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
@@ -409,21 +443,52 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
           </div>
 
-          <div className="navbar-end flex justify-end items-center gap-1">
+          <div className="navbar-end flex justify-end items-center gap-2">
+            <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
+              <button onClick={() => setOpenSearch(prev => !prev)}>
+                <CiSearch className="w-10 h-10 rounded-full p-1 mt-0.5 hover:bg-black/10 dark:hover:bg-black/15" />
+              </button>
+            </div>
+            <div
+              className={`
+    fixed top-16 left-0 w-full z-40
+    lg:hidden md:hidden
+    transition-all duration-300 ease-in-out
+    ${openSearch ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
+  `}
+            >
+              <div className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-black shadow-md">
+                <input
+                  type="text"
+                  placeholder="Search product..."
+                  className="w-full px-3 py-2 rounded-md border outline-none text-black dark:text-white"
+                  autoFocus
+                />
+                <button onClick={() => setOpenSearch(false)}>
+                  <AiOutlineClose className="text-2xl" />
+                </button>
+              </div>
+            </div>
 
-            <div ref={profileRef} className="relative group ml-1 flex justify-center items-center "
+
+            <div
+              ref={profileRef}
+              className={` relative ml-1 flex items-center justify-center rounded-full h-10
+    ${openProfile ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 dark:hover:bg-black/15"}
+  `}
               onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
               onMouseLeave={() => window.innerWidth >= 768 && setOpenProfile(false)}
             >
+
               {
                 user ? <>
                   <div className="">
-                    <button className="lg:block md:block hidden  w-16 lg:h-16 md:h-16 h-10 pl-3 -mt-4 -mb-4">
+                    <button className="lg:block md:block hidden lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
                       {loading ? (
                         <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
                       ) : user?.photoURL ? (
                         <img
-                          className="rounded-full p-1 w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15"
+                          className="rounded-full p-1 w-10 h-10  hover:bg-black/10 dark:hover:bg-black/15"
                           src={user?.photoURL}
                           alt="Profile"
                           referrerPolicy="no-referrer"
@@ -440,11 +505,11 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                     }}
                     className={({ isActive }) =>
                       isActive
-                        ? "hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full h-12 -mb-4 lg:block md:block hidden "
-                        : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full h-12 -mb-4  lg:block md:block hidden"
+                        ? "hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full  lg:block md:block hidden "
+                        : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full  lg:block md:block hidden"
                     }
                   >
-                    <h2 className=" lg:flex md:flex hidden justify-between text-lg lg:text-lg items-center gap-3  pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 lg:shadow-none md:shadow-none shadow-md lg:py-0 md:py-0 py-1 ">
+                    <h2 className="lg:flex md:flex hidden justify-between text-lg lg:text-lg items-center gap-3  pl- lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 lg:shadow-none md:shadow-none shadow-md lg:py-3.5 md:py-0 py-2 ">
                       <span>{t("Login")} </span>
                       <RxPerson />
                     </h2>
@@ -452,30 +517,30 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               }
 
               {/* Profile Button */}
-              <div className=" w-12 h-16 pl-1 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400 "
+              <div className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400"
                 onClick={handleProfileToggle}
               >
                 <button className="">
                   {loading ? (
-                    <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                    <div className=" w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
                   ) : user?.photoURL ? (
                     <img
-                      className="rounded-full p-1 w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15"
+                      className=" rounded-full p-1 w-10 h-10 hover:bg-black/5 dark:hover:bg-black/15"
                       src={user?.photoURL}
                       alt="Profile"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <RxPerson className="text-4xl hover:text-[37px] rounded-full border-yellow-700 p-1 mt-1 hover:bg-black/10 dark:hover:bg-black/15" />
+                    <RxPerson className="text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 hover:bg-black/10 dark:hover:bg-black/15" />
                   )}
                 </button>
               </div>
 
               {/* Dropdown Panel — SHOW ON HOVER */}
               <div
-                className={`absolute -right-2 top-[48px] w-64 
+                className={`absolute -right-14 top-[50px] w-64 
                 bg-white dark:bg-primary-dark dark:text-white text-white 
-                  rounded-b-lg shadow-lg dark:border-gray-600 z-10
+                  rounded-md shadow-lg dark:border-gray-600 z-50
                   ${openProfile ? "block" : "hidden"}`}
               >
 
@@ -499,7 +564,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                   </button>
                 </div>
 
-                <div className="flex flex-col items-center p-4 text-black dark:text-white">
+                <div className=" flex flex-col items-center p-4 text-black dark:text-white">
                   {user ? (
                     <img
                       className="w-20 h-20 rounded-full border border-gray-100 dark:border-gray-600"
@@ -508,7 +573,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <RxPerson className="w-16 h-16 p-1" />
+                    <RxPerson className=" w-16 h-16 p-1" />
                   )}
 
                   <h3 className="mt-3 font-semibold">
@@ -562,34 +627,24 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               </div>
             </div>
 
-            <div ref={cartRef} className="relative group mx-1 flex justify-center items-center "
+            <div ref={cartRef} className={`relative ml-1 flex items-center justify-center rounded-full
+    ${openCart ? "bg-black/15 dark:bg-black/10 w-10 h-10" : "hover:bg-black/10 w-10 h-10 dark:hover:bg-black/15"}
+  `}
               onMouseEnter={() => window.innerWidth >= 768 && setOpenCart(true)}
-              // onMouseLeave={() => window.innerWidth >= 768 && setOpenCart(false)}
+            // onMouseLeave={() => window.innerWidth >= 768 && setOpenCart(false)}
             >
-              {/* <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center w-12 h-12 ">
-                <p className="hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full h-12 -mb-4 ">
-                  <PiBagLight className="text-[29px] lg:text-[29px] lg:hover:text-[30px] hover:text-[29px] items-center flex lg:ml-0 md:ml-0 ml-2 relative bg-black/10 dark:hover:bg-black/15 " />
-                  <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white top-0 lg:right- xl:-right-1 md:right- right-2 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
-                </p>
-              </div> */}
-              <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center w-12 h-16 pl-1 -mb-4 -mt-4 py-2.5 hover:text-orange-400 border border-none">
+              <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center h-16 -mb-4 -mt-4 py-2.5 hover:text-orange-400 border border-none">
                 <p className="hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px- py-1 xl:px- w-full h-12 -mb- ">
-                  <PiBagLight className="rounded-full p-1 w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15" />
-                  <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white -top-2.5 lg:right- xl:right-1 md:right-1 right-1 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
+                  <PiBagLight className="rounded-full p-1 mt-[1px] w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15" />
+                  <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white -top-2 lg:right- xl:right-1 md:right-1 right-1 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
                 </p>
               </div>
 
               <div
-
-                // className={
-                //   openCart
-                //     ? " bg-gray-800 border rounded-md shadow-sm backdrop-blur-[30px]  h-screen mt-3 lg:w-[505px] md:w-[505px] sm:w-[505px] w-[400px] p-2 z-40 fixed right-0 top-12  text-white"
-                //     : "hidden right-0 -left-80 text-white hover:text-orange-400 "
-                // }
                 className={
                   openCart
-                    ? "fixed right-0 top-[52px] h-screen mt-3 lg:w-[505px] md:w-[505px] sm:w-[505px] w-[400px] p-2 z-50 bg-gray-800 border rounded-md shadow-sm backdrop-blur-[30px] text-white transform translate-x-0 transition-all duration-300 ease-out"
-                    : "fixed right-0 top-14 h-screen lg:w-[505px] md:w-[505px] sm:w-[505px] w-[400px] z-50 transform translate-x-full transition-all duration-300 ease-out"
+                    ? "fixed right-0 top-[52px] h-screen mt-3 lg:w-[505px] md:w-[505px] sm:w-[505px] w-[300px] p-2 z-40 bg-black/15 dark:border-gray-600 border-gray-600 border rounded-md shadow-sm backdrop-blur-[900px] text-white transform translate-x-0 transition-all duration-500 ease-out"
+                    : "fixed right-0 top-[64px] h-screen lg:w-[505px] md:w-[505px] sm:w-[505px] w-[400px] z-40 transform translate-x-full transition-all duration-500 ease-out"
                 }
 
               >
@@ -636,7 +691,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             {navLink}
           </ul>
         </div>
-        <div className="navbar-center block md:hidden  items-center justify-center px-0.5">
+        {/* <div className="navbar-center block md:hidden  items-center justify-center px-0.5">
           <div className="  lg:w-full  ">
             <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border border-dashed border-[#fb923c] text-center justify-center">
               <input
@@ -651,7 +706,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

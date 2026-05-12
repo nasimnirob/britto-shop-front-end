@@ -16,8 +16,8 @@ const Home = () => {
       <Helmet>
         <title>Britto Shop | Home</title>
       </Helmet>
-      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] ">
-        <Banner />
+      <div className="w-[99.72vw] relative left-1/2 right-1/2 -mx-[50vw] ">
+          <Banner />
 
           <Category />
       </div>

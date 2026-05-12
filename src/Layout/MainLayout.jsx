@@ -35,7 +35,7 @@ const MainLayout = () => {
     <div className="min-h-screen flex flex-col">
 
       {/* ✅ Navbar full width (no container limit) */}
-      <div className="lg:mt-[105px] md:mt-[105px] mt-[106px]">
+      <div className="lg:mt-[105px] md:mt-[105px] mt-[66px]">
         <Navbar openCart={openCart} setOpenCart={setOpenCart} openProfile={openProfile} setOpenProfile={setOpenProfile} open={open} setOpen={setOpen} />
       </div>
       {(openCart || openProfile || open) && (

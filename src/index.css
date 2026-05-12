@@ -58,3 +58,32 @@ body {
   -moz-user-select: none;    /* For Firefox */
   -ms-user-select: none;     /* For IE/Edge */
 }
+
+/* custom scrollbar */
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: #e5e7eb; 
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #949497; 
+  border-radius: 10px;
+}
+
+/* Hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #8b8b8f; 
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #dfdfe2 #e5e7eb;
+}
