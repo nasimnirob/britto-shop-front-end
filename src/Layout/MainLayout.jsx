@@ -19,46 +19,118 @@
 
 // export default MainLayout;
 
-import { Outlet } from "react-router-dom";
+// import { Outlet, useNavigation } from "react-router-dom";
+// import Navbar from "../Component/Shared/Navbar";
+// import Footer from "../Component/Shared/Footer";
+// import { useState } from "react";
+// import Loader from "../Component/Loader";
+
+// const MainLayout = () => {
+//   const [openCart, setOpenCart] = useState(false);
+//   const [openProfile, setOpenProfile] = useState(false);
+//   const [open, setOpen] = useState(false);
+
+//   const navigation = useNavigation();
+
+//   const isLoading = navigation.state === "loading";
+
+//   return (
+
+//     <div className="min-h-screen flex flex-col">
+//       {isLoading && <Loader />}
+//       {/* ✅ Navbar full width (no container limit) */}
+//       <div className="lg:mt-[105px] md:mt-[105px] mt-[66px]">
+//         <Navbar openCart={openCart} setOpenCart={setOpenCart} openProfile={openProfile} setOpenProfile={setOpenProfile} open={open} setOpen={setOpen} />
+//       </div>
+//       {(openCart || openProfile || open) && (
+//         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
+//       )}
+//       {/* ✅ Main content area */}
+//       <main className="flex-grow flex justify-center  overflow-x-clip">
+//         {/* এখানে Outlet max-w-2xl এর মধ্যে থাকবে */}
+//         <div className="w-full max-w-[1524px] mx-auto ">
+
+//           <Outlet />
+//         </div>
+//       </main>
+
+//       {/* ✅ Footer full width */}
+//       <div className="">
+//         <div className=" ">
+//           <Footer />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MainLayout;
+
+
+
+
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Component/Shared/Navbar";
 import Footer from "../Component/Shared/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import RouteLoader from "../Component/RouteLoader";
 
 const MainLayout = () => {
   const [openCart, setOpenCart] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [open, setOpen] = useState(false);
 
+  // ✅ loader state
+  const [loading, setLoading] = useState(false);
+
+  // ✅ route detect
+  const location = useLocation();
+
+  useEffect(() => {
+    setLoading(true);
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
-
     <div className="min-h-screen flex flex-col">
 
-      {/* ✅ Navbar full width (no container limit) */}
-      <div className="lg:mt-[105px] md:mt-[105px] mt-[66px]">
-        <Navbar openCart={openCart} setOpenCart={setOpenCart} openProfile={openProfile} setOpenProfile={setOpenProfile} open={open} setOpen={setOpen} />
-      </div>
-      {(openCart || openProfile || open) && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
-      )}
-      {/* ✅ Main content area */}
-      <main className="flex-grow flex justify-center  overflow-x-clip">
-        {/* এখানে Outlet max-w-2xl এর মধ্যে থাকবে */}
-        <div className="w-full max-w-[1524px] mx-auto ">
+      {/* ✅ Loader */}
+      {loading && <RouteLoader />}
 
+      {/* ✅ Navbar */}
+      <div className="lg:mt-[105px] md:mt-[105px] mt-[66px]">
+        <Navbar
+          openCart={openCart}
+          setOpenCart={setOpenCart}
+          openProfile={openProfile}
+          setOpenProfile={setOpenProfile}
+          open={open}
+          setOpen={setOpen}
+        />
+      </div>
+
+      {/* ✅ Overlay */}
+      {(openCart || openProfile || open) && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"></div>
+      )}
+
+      {/* ✅ Main Content */}
+      <main className="flex-grow flex justify-center overflow-x-clip">
+        <div className="w-full max-w-[1524px] mx-auto">
           <Outlet />
         </div>
       </main>
 
-      {/* ✅ Footer full width */}
-      <div className="">
-        <div className=" ">
-          <Footer />
-        </div>
-      </div>
+      {/* ✅ Footer */}
+      <Footer />
     </div>
   );
 };
 
 export default MainLayout;
-

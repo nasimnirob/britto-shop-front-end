@@ -364,14 +364,14 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               <ul
                 ref={menuRef}
                 className={`lg:hidden md:hidden fixed top-0 left-0 h-screen 
-    lg:w-[505px] md:w-[240px] sm:w-[320px] w-[300px]
-    z-40 bg-black/30 backdrop-blur-md
-    border border-gray-600 shadow-sm text-white
-    transform transition-transform duration-500 ease-in-out
-    ${open ? "translate-x-0" : "-translate-x-full"}
-  `}
+                    lg:w-[505px] md:w-[240px] sm:w-[320px] w-[300px]
+                    z-40 bg-black/30 backdrop-blur-md
+                    border border-gray-600 shadow-sm text-white
+                    transform transition-transform duration-500 ease-in-out
+                    ${open ? "translate-x-0" : "-translate-x-full"}
+                  `}
               >
-                <div className="flex flex-row  lg:hidden md:hidden pt-2.5 pl-2 pb-4 bg-black/20">
+                < div className="flex flex-row  lg:hidden md:hidden pt-2.5 pl-2 pb-4 bg-black/20">
                   <div
                     onClick={handleToggle}
                     role="button"
@@ -443,7 +443,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
           </div>
 
-          <div className="navbar-end flex justify-end items-center gap-2">
+          <div className="navbar-end flex justify-end items-center lg:gap-6 md:gap-4 gap-2">
             <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
               <button onClick={() => setOpenSearch(prev => !prev)}>
                 <CiSearch className="w-10 h-10 rounded-full p-1 mt-0.5 hover:bg-black/10 dark:hover:bg-black/15" />
@@ -451,11 +451,11 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
             <div
               className={`
-    fixed top-16 left-0 w-full z-40
-    lg:hidden md:hidden
-    transition-all duration-300 ease-in-out
-    ${openSearch ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
-  `}
+                fixed top-16 left-0 w-full z-40
+                lg:hidden md:hidden
+                transition-all duration-300 ease-in-out
+                ${openSearch ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
+              `}
             >
               <div className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-black shadow-md">
                 <input
@@ -474,7 +474,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             <div
               ref={profileRef}
               className={` relative ml-1 flex items-center justify-center rounded-full h-10
-    ${openProfile ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 dark:hover:bg-black/15"}
+    ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 dark:hover:bg-black/15"}
   `}
               onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
               onMouseLeave={() => window.innerWidth >= 768 && setOpenProfile(false)}
@@ -497,23 +497,27 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                         <RxPerson className="text-4xl rounded-full border-yellow-700 p-1 mt-1.5 hover:bg-black/10 dark:hover:bg-black/15" />
                       )}
                     </button>
-                  </div></>
-                  : <NavLink
-                    to="/login"
-                    onClick={() => {
-                      setOpen(false);
-                    }}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full  lg:block md:block hidden "
-                        : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px-2 py-1 xl:px-5 w-full  lg:block md:block hidden"
-                    }
-                  >
-                    <h2 className="lg:flex md:flex hidden justify-between text-lg lg:text-lg items-center gap-3  pl- lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 lg:shadow-none md:shadow-none shadow-md lg:py-3.5 md:py-0 py-2 ">
-                      <span>{t("Login")} </span>
-                      <RxPerson />
-                    </h2>
-                  </NavLink>
+                  </div>
+                </>
+                  :
+                  <>
+                    <NavLink
+                      to="/login"
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "hover:text-orange-400 text-base lg:block md:block hidden "
+                          : "text-inherit hover:text-orange-400 text-base lg:block md:block hidden"
+                      }
+                    >
+                      <h2 className="flex flex-row justify-center items-center gap-2 lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
+                        <span>{t("Login")} </span>
+                        <span><RxPerson /></span>
+                      </h2>
+                    </NavLink>
+                  </>
               }
 
               {/* Profile Button */}

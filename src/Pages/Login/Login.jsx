@@ -23,20 +23,17 @@ const Login = () => {
       });
   };
   return (
-    <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-center py-12 w-full ">
+    <div className="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-center items-center py-12 w-full px-4 ">
       <Helmet>
         <title>Britto Shop | Login</title>
       </Helmet>
 
-      <div className="xl:w-1/3 lg:w-1/2 md:w-1/2 flex justify-center  items-center lg:border-r md:border-r lg:pr-10 md:pr-10 xl:pr-10 border-gray-200 ">
+      <div className="w-full xl:w-1/3 lg:w-1/2 md:w-1/2 flex justify-center  items-center lg:border-r md:border-r lg:pr-10 md:pr-10 xl:pr-10 border-gray-200 ">
         <div className="  w-full max-w-md">
-          {/* <h2 className="text-2xl text-orange-500 font-bold text-center mb-6">
-              <NavLink to="/">Britto Shop</NavLink>
-            </h2> */}
           <p className="font-bold text-blue-500 uppercase text-2xl py-5">Login</p>
           <p className="text-[#7C7C7C] pb-2 dark:text-gray-400">Login to access your account</p>
           <form className="space-y-4">
-            <div className="relative mb-6 mt-5">
+            <div className="relative mb-6 mt-5 ">
               <input
                 type="text"
                 id="Input2"
@@ -50,12 +47,8 @@ const Login = () => {
                 Phone Number Or Email<span className="text-red-500">*</span>
               </label>
             </div>
-
-
-            <div className="relative mb-6 ">
-              <div className="flex flex-row">
-                <div className="absolute w-full">
-                  <input
+            <div className="relative mb-6 mt-5 ">
+              <input
                     type={`${showPassword ? 'text' : 'password'}`}
                     id="Input22"
                     placeholder="Password"
@@ -73,26 +66,22 @@ const Login = () => {
                   >
                     {showPassword ? <RxEyeOpen /> : <IoEyeOffOutline />}
                   </span>
-                </div>
-                <div className="relative">
-                </div>
-              </div>
             </div>
 
-            <div className="mb-6 flex items-center justify-between">
-              <div className=" mb-[0.125rem] flex items-center justify-center min-h-[1.5rem] text-base">
-                {/* <input className="accent-blue-500 " type="checkbox" value="" id="exampleCheck2" />
+
+            <div className="flex w-full items-center justify-between ">
+               <div className="flex items-center gap- justify-center  text-base">
+                <input className="accent-blue-500 " type="checkbox" value="" id="exampleCheck2" />
                   <label
-                    className="inline-block text-gray-500 ps-[0.15rem] hover:cursor-pointer"
+                    className="inline-block text-gray-500  hover:cursor-pointer"
                     for="exampleCheck2"
                   >
                     <span className="no-copy pl-1 text-base">Remember me</span>
-                  </label> */}
+                  </label>
               </div>
-            </div>
-
-            <div className="flex w-full items-end justify-end">
-              <button className="text-gray-700 dark:text-gray-300 text-sm ">Forgot password?</button>
+              <div className="">
+                <button className="text-gray-700 dark:text-gray-300 text-sm ">Forgot password?</button>
+              </div>
             </div>
 
             <div className="text-center lg:text-left ">
@@ -110,7 +99,7 @@ const Login = () => {
               <hr />
               <p className="my-2 text-black text-center dark:text-white">OR</p>
               <hr />
-              <div className=" px-1 mt-3 flex  items-center lg:justify-between justify-between  gap-1 uppercase text-white  h-[45px] w-full">
+              <div className=" px-1 mt-3 flex  items-center lg:justify-around justify-around  gap-1 uppercase text-white  h-[45px] w-full">
                 <div
                   onClick={handleGoogleLogin}
                   className="btn dark:text-white bg-white dark:bg-gray-900 dark:border-gray-600 dark:hover:bg-gray-800 text-black border border-gray-300 rounded-full flex items-center justify-center w- h-[45px] lg:px-[18px] px-2 lg:gap-2 gap-1 lg:text-base text-[13px]  hover:bg-gray-200"
@@ -131,23 +120,12 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-
-              {/* <p className="mb-0 mt-2 pt-1 text-sm font-semibold text-center text-[#7C7C7C] dark:text-gray-400">
-                Don’t have an Account?
-                <NavLink
-                  to="/register"
-                  className="px-1 text-blue-600 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                >
-                  {" "}
-                  Register Here
-                </NavLink>
-              </p> */}
             </div>
           </form>
         </div>
       </div>
 
-      <div className="space-y-4 xl:w-1/3 lg:w-1/2 md:w-1/2 lg:pl- md:pl-10  max-w-md" >
+      <div className="w-full space-y-4 xl:w-1/3 lg:w-1/2 md:w-1/2 lg:pl- md:pl-10  max-w-md" >
         <div>
           <h1 className="text-blue-500 uppercase font-bold text-2xl py-5 hidden lg:block md:block">New Here? Register Now</h1>
           <h1 className="text-blue-500  font-bold text-3xl py-5 mt-3 block lg:hidden md:hidden">Don’t have an Account?</h1>
@@ -170,10 +148,7 @@ const Login = () => {
           </p>
           <NavLink
             to="/register"
-          // className="w-full border text-white text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 bg-black hover:bg-gray-800 dark:hover:bg-gray-900 py-2 rounded-sm"
           >
-            {/* {"   "}
-            Register Here */}
             <div className="max-w-md justify-center  flex items-center py-4 rounded-md">
               <button
                 type="button"

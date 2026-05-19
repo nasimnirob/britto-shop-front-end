@@ -12,7 +12,7 @@ const Home = () => {
   const [data] = UseProducts();
   const popularData = data.filter((item) => item.category === "Popular");
   return (
-    <div>
+    <div className="">
       <Helmet>
         <title>Britto Shop | Home</title>
       </Helmet>
@@ -22,7 +22,7 @@ const Home = () => {
           <Category />
       </div> */}
 
-      <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-x-clip">
+      <div className="relative left-1/2 w-screen -translate-x-1/2 ">
         <Banner />
         <Category />
       </div>

@@ -12,20 +12,6 @@ import { useTranslation } from "react-i18next";
 // import { useLoaderData } from "react-router-dom";
 
 const Product = () => {
-  // const allProductData = useLoaderData()
-  // console.log(allProductData)
-  // const [data, setData] = useState([]);
-  // console.log(data)
-  // useEffect(()=>{
-  //     fetch('products.json')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //         setData(data)
-  //         const filterPopularData = data.filter(item => item.category === 'popular')
-  //         console.log(filterPopularData)
-  //     })
-  // },[])
-
   const { t } = useTranslation();
   const [data] = UseProducts();
   const popularData = data.filter((item) => item.category === "Popular");
