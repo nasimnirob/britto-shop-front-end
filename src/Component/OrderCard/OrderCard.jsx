@@ -11,8 +11,9 @@ const OrderCard = ({ products }) => {
             <ZoomImage src={product.image} alt={product.name} />
             <p className="absolute right-0 top-0 bg-[#ff0066] text-white rounded-md p-1 flex items-center ">
               <TbCurrencyTaka className="text-2xl" />{product.price} 
+              {/* TK {product.price}  */}
             </p>
-          </figure>
+          </figure> 
           <div className="card-body text-center flex items-start">
             <h2 className="card-title">{product.name}</h2>
             <p className="text-start lg:py-1 py-1">{product.description}</p>

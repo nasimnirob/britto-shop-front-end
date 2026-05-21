@@ -714,6 +714,30 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
             </Swiper> */}
+
+            <Swiper
+                modules={[Thumbs]}
+                watchSlidesProgress={true}
+                onSwiper={setThumbsSwiper}
+                slidesPerView="auto"
+                spaceBetween={10}
+                centeredSlides={true}
+                className="mt-2 w-full"
+            >
+                {images.map((img, i) => (
+                    <SwiperSlide key={i} style={{ width: "12px" }}>
+                        <img
+                            src={img}
+                            alt={`thumb-${i}`}
+                            className="w-full object-cover h-1 cursor-pointer
+                opacity-50 transition-all duration-300
+                [.swiper-slide-thumb-active_&]:opacity-100
+                [.swiper-slide-thumb-active_&]:ring-1
+                [.swiper-slide-thumb-active_&]:ring-black"
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </div>
     );
 };

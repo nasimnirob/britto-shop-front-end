@@ -328,7 +328,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
   );
   return (
     <div className="z- relative">
-      <div className={`w-full fixed top-0 left-0 z-50 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px] text-white" : "bg-transparent rounded-b-[4.5px] text-black dark:text-white"
+      <div className={` w-full fixed top-0 left-0 z-50 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px] text-white" : "bg-transparent rounded-b-[4.5px] text-black dark:text-white bg-white dark:bg-primary-dark"
         }`}>
         <div
           className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white " : "text-black dark:text-white"
@@ -430,7 +430,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             <div className="  lg:w-full  ">
               <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border border-dashed border-[#fb923c] text-center justify-center">
                 <input
-                  className={`font-extralight font-poppins w-full px-3 py-2 bg-black/5 placeholder:text-sm ${isSticky ? 'placeholder:text-gray-100' : 'placeholder:text-gray-600'} text-base outline-none ring-0 focus:outline-none rounded-l-[5px]`}
+                  className={`font-extralight font-poppins w-full px-3 py-2 bg-black/5 placeholder:text-sm ${isSticky ? 'placeholder:text-gray-100 dark:placeholder:text-gray-300' : 'placeholder:text-gray-600 dark:placeholder:text-gray-200'} text-base outline-none ring-0 focus:outline-none rounded-l-[5px]`}
                   type="search"
                   placeholder="Search product name..."
                 />
@@ -474,7 +474,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             <div
               ref={profileRef}
               className={` relative ml-1 flex items-center justify-center rounded-full h-10
-    ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 dark:hover:bg-black/15"}
+    ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 "}
   `}
               onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
               onMouseLeave={() => window.innerWidth >= 768 && setOpenProfile(false)}
@@ -521,7 +521,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               }
 
               {/* Profile Button */}
-              <div className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400"
+              <div className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400 "
                 onClick={handleProfileToggle}
               >
                 <button className="">
@@ -529,13 +529,17 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                     <div className=" w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
                   ) : user?.photoURL ? (
                     <img
-                      className=" rounded-full p-1 w-10 h-10 hover:bg-black/5 dark:hover:bg-black/15"
+                      className=" rounded-full p-1 w-10 h-10  hover:bg-black/5 dark:hover:bg-black/15"
                       src={user?.photoURL}
                       alt="Profile"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <RxPerson className="text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 hover:bg-black/10 dark:hover:bg-black/15" />
+                    <>
+                      <RxPerson className={`${openProfile
+                        ? "text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 bg-black/10 dark:bg-black/15 hover:bg-black/10 dark:hover:bg-black/15"
+                        : "text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 hover:bg-black/10 dark:hover:bg-black/15"}`} />
+                    </>
                   )}
                 </button>
               </div>
