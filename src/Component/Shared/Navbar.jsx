@@ -151,7 +151,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
       </li>
       <li className="lg:my-0  md:my-0 my-1">
         <NavLink
-          to="/product"
+          to="/shop"
           onClick={() => {
             setOpen(false);
           }}
@@ -226,10 +226,10 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 lg:-left-[40px] lg:right-10 lg:pt-4 w-full  border-orange-400 lg:w-[180px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-50"
+            className="lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 lg:-left-[20px] lg:right- lg:pt- w-full  border-orange-400 lg:w-[180px] shadow-lg lg:shadow-none lg:z-50"
           >
             {uniqueCategory.map((category) => (
-              <div className="bg-white dark:bg-black lg:px- px-2 py-1 lg:py-1 shadow-2xl">
+              <div className="bg-white/95 dark:bg-black lg:px- px-2 py-1 lg:py-1 shadow-2xl">
                 <li key={category}>
                   <NavLink
                     to={`/category/${category.toLowerCase()}`}

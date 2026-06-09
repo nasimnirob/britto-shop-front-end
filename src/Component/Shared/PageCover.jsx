@@ -19,7 +19,8 @@ const PageCover = ({ img, tittle, description }) => {
       bgImageAlt={tittle}
       strength={300}
     >
-      <div className="hero" style={{ height: "600px" }}>
+      {/* <div className="hero" style={{ height: "600px" }}> */}
+      <div className="hero h-screen" >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-neutral-content text-center flex-col lg:flex-row lg:gap-9 gap-2">
           <div className="lg:max-w-2xl max-w-md px-0 lg:px-16 bg-white/10 backdrop-blur-sm rounded-sm">
@@ -35,3 +36,7 @@ const PageCover = ({ img, tittle, description }) => {
 };
 
 export default PageCover;
+
+
+
+

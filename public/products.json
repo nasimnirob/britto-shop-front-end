@@ -1,5 +1,4 @@
 [
-  
   {
     "_id": 101,
     "name": "Wireless Headphones",
@@ -27,7 +26,6 @@
     "stock": 50,
     "image": "https://i.ibb.co/P2cGnBv/bluetooth-speaker.jpg"
   },
-
   {
     "_id": 104,
     "name": "4K Monitor",
@@ -44,7 +42,7 @@
     "price": 24.99,
     "category": "Electronics",
     "stock": 35,
-    "image":"https://i.ibb.co/cc1sP99Y/Wireless-Mouse.jpg"
+    "image": "https://i.ibb.co/cc1sP99Y/Wireless-Mouse.jpg"
   },
   {
     "_id": 106,
@@ -91,8 +89,6 @@
     "stock": 12,
     "image": "https://i.ibb.co/vCpxdt7V/Action-Camera.jpg"
   },
-
-  
   {
     "_id": 201,
     "name": "Men's Denim Jacket",
@@ -120,7 +116,6 @@
     "stock": 30,
     "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
   },
-
   {
     "_id": 204,
     "name": "Men's Formal Shirt",
@@ -184,7 +179,6 @@
     "stock": 50,
     "image": "  https://i.ibb.co/9kLqz1Z7/Women-s-Tank-Top.jpg"
   },
-
   {
     "_id": 301,
     "name": "Non-Stick Cookware Set",
@@ -274,9 +268,7 @@
     "category": "Kitchen",
     "stock": 40,
     "image": "https://i.ibb.co/vCjs0VnJ/Wall-Clock.jpg"
-  }
-  ,
-  
+  },
   {
     "_id": 31,
     "category": "Beauty",
@@ -357,8 +349,6 @@
     "price": 34.50,
     "image": "https://i.ibb.co/4gd9PDWq/H08cd12d94d9c46c6980b62abee43dea3-K-jpg-720x720q50.jpg"
   },
-
-  
   {
     "_id": 41,
     "category": "Sports",
@@ -439,8 +429,6 @@
     "price": 25.99,
     "image": "https://i.ibb.co/4nMkC0bs/banner-Sport.jpg"
   },
-
-  
   {
     "_id": 51,
     "category": "Toys",
@@ -530,7 +518,7 @@
     "stock": 20,
     "image": "https://i.ibb.co/rGC7KxBJ/Gaming-Keyboard.jpg"
   },
-   {
+  {
     "_id": 2008,
     "name": "K_ids' Pajama Set",
     "description": "Cute and cozy 2-piece pajama set for k_ids.",
@@ -552,13 +540,68 @@
     "_id": 4007,
     "category": "Popular",
     "name": "Bike Helmet",
-    "description": "Adjustable cycling helmet for adults.",
+    "description": "STYLE:\nPremium China Polo Design\nSmart Casual & Trendy Look\n\nFABRIC:\nPremium China Fabric\nSmooth, Soft & Comfortable\n\nSLEEVE:\nHalf Sleeve\n\nSIZE:\nM, L, XL, XXL",
     "price": 39.99,
     "image": "https://i.ibb.co/xtvJTkJ0/banner-Cricket-1.jpg"
   },
   {
     "_id": 4008,
     "category": "Combo",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg",
+    "images": [
+      "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg",
+      "https://i.ibb.co/7xYP4c5M/Blender.jpg",
+      "https://i.ibb.co/7xKQkwr3/K-ids-Pajama-Set.jpg",
+      "https://i.ibb.co/rGC7KxBJ/Gaming-Keyboard.jpg",
+      "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+    ]
+  },
+  {
+    "_id": 4009,
+    "category": "ksdfs",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  },
+  {
+    "_id": 4010,
+    "category": "aevevevevevevevevevev",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  },
+  {
+    "_id": 4011,
+    "category": "sdvfoipuvwerfdsdddd",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  },
+  {
+    "_id": 4012,
+    "category": "dilam aktadf djeifsodfk",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  },
+  {
+    "_id": 4013,
+    "category": "sdklfioiwe sdkfoiw ndofi",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  },
+  {
+    "_id": 4014,
+    "category": "sdklfioiwe sdkfoiw ndofi dfgvedf dsfskj dkfjsoo sodfs dfsd",
     "name": "Hoodie Combo",
     "description": "Adjustable cycling helmet for adults.",
     "price": 39.99,

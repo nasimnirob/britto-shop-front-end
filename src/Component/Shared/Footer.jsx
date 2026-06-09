@@ -4,7 +4,7 @@ import { IoLogoLinkedin } from "react-icons/io";
 const Footer = () => {
     return (
         <>
-            <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 flex lg:flex-row flex-col md:flex-row justify-around items-center h-full">
+            <footer className="z-10  footer sm:footer-horizontal bg-neutral text-neutral-content p-10 flex lg:flex-row flex-col md:flex-row justify-around items-center h-full">
                 <aside className="">
                {/* <h1 className="uppercase text-center w-full  p-2 ">Contact Us</h1> */}
                <h1 className="uppercase text-center w-full text-xl text-orange-500">ব্রিট্টো শপ</h1>
@@ -38,7 +38,7 @@ const Footer = () => {
                 </nav>
                
             </footer>
-            <footer className="footer sm:footer-horizontal footer-center bg-neutral text-base-content p-4 text-white">
+            <footer className="z-10 footer sm:footer-horizontal footer-center bg-neutral text-base-content p-4 text-white">
                     <aside>
                         <p>Copyright © {new Date().getFullYear()} - All right reserved by <span className="text-blue-600">Britto Shop</span></p>
                     </aside>

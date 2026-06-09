@@ -3,9 +3,13 @@ import OrderCard from "../../../Component/OrderCard/OrderCard";
 import UseProducts from "../../../Hooks/UseProducts";
 import { useParams } from "react-router-dom";
 import PageCover from "../../../Component/Shared/PageCover";
+import useCategory from "../../../Hooks/useCategory";
 
 const OurCategory = () => {
   const [data] = UseProducts();
+  const MainCategory = useCategory();
+  console.log(MainCategory);
+
   const { category } = useParams();
 
   if (!data || !category) return <div>Loading...</div>;
@@ -21,15 +25,42 @@ const OurCategory = () => {
       </div>
     );
   }
-    console.log(filteredProducts);
+  console.log(filteredProducts);
+  // console.log(category);
   return (
-    <div className="">
-      <PageCover img={filteredProducts[0].image} tittle={filteredProducts[0].category} description='বিভিন্ন ক্যাটাগরির পণ্য এক জায়গায়—ইলেকট্রনিক্স, পোশাক, বাসার সামগ্রী, বিউটি প্রোডাক্টস, খেলনা ও আরও অনেক কিছু সহজে খুঁজে নিন।'></PageCover>
-      <div className="mx-0.5 my-2">
-        <OrderCard products={filteredProducts} />
+  <div>
+    {/* Breadcrumb - z-20 দিন */}
+    <div className="w-full relative z-20 border-b">
+      <div className="max-w-[1524px] mx-auto py-2 px-2 text-gray-600 bg-gray-300/10">
+        Home / Category / {filteredProducts[0].category}
       </div>
     </div>
-  );
+
+    <div className="relative">
+      {/* PageCover - z-0 বা -z-10 */}
+      {/* <div className="fixed inset-0 w-screen h-screen ">
+        <PageCover
+          img={filteredProducts[0].image}
+          tittle={filteredProducts[0].category}
+          description='বিভিন্ন ক্যাটাগরির পণ্য...'
+        />
+      </div> */}
+
+      <div className="flex flex-row gap-4 mx-0.5">
+        <div className="lg:block md:block hidden w-96 z-20 text-gray-700 dark:text-white flex-col py-2.5">
+          <div className="flex flex-col text-lg font-poppins lg:border-r md:border-r">
+            {MainCategory.map((category, index) => (
+              <span key={index} className="py-2 px-4">{category}</span>
+            ))}
+          </div>
+        </div>
+        <div className="w-full my-5">
+          <OrderCard products={filteredProducts} />
+        </div>
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default OurCategory;

@@ -665,7 +665,7 @@ const Banner = () => {
                         {images.map((img, i) => (
                             <SwiperSlide key={i}>
                                 <img
-                                    className="w-full object-cover h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] 2xl:h-[75vh]"
+                                    className="w-full object-cover h-[20vh] sm:h-[40vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] 2xl:h-[75vh]"
                                     src={img}
                                     alt={`slide-${i}`}
                                 />

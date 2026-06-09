@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const UseProducts = () => {
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState([]);
+    const [loading, setLoading] = useState(true);
         // console.log(data)
         useEffect(()=>{
             fetch('/products.json')

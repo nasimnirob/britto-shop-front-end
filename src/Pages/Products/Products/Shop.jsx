@@ -11,7 +11,7 @@ import ProductsCategory from "../../../Component/ProductsCategory/productsCatego
 import { useTranslation } from "react-i18next";
 // import { useLoaderData } from "react-router-dom";
 
-const Product = () => {
+const Shop = () => {
   const { t } = useTranslation();
   const [data] = UseProducts();
   const popularData = data.filter((item) => item.category === "Popular");
@@ -108,4 +108,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Shop;
