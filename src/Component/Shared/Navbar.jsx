@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { PiBagLight } from "react-icons/pi";
 import { BsDashLg } from "react-icons/bs";
 import { motion } from "framer-motion";
@@ -15,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSelector from "../Language/LanguageSelector";
 import { RxPerson } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
+import ScrollableList from "../ScrollableList";
 
 const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setOpen }) => {
   const { user, logOut, loading } = useContext(AuthContext);
@@ -143,7 +145,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1.5 md:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between text-lg lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent  md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 md:py-0 py-1 ">
+          <h2 className="flex justify-between text-base lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent  md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 md:py-0 py-1 ">
             <span>{t("Home")}</span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -161,7 +163,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1.5 md:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between text-lg lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent  md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1   md:py-0">
+          <h2 className="flex justify-between text-base lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent  md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1   md:py-0">
             <span>{t("Shop")} </span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -180,7 +182,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1.5 md:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between items-center text-lg lg:text-lg gap-3 pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1  md:py-0">
+          <h2 className="flex justify-between items-center text-base lg:text-lg gap-3 pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1  md:py-0">
             <span>{t("Cart")}</span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -202,14 +204,14 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1.5 md:py-1.5 py-1 xl:px-5"
             }`}
         >
-          <h2 className="group  flex justify-between text-lg lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 md:py-0">
+          <h2 className="group  flex justify-between text-base lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 md:py-0">
             <span>
               {currentCategory ? t(currentCategory) : t("Categories")}
             </span>
 
             {/* Default down arrow (visible by default, hidden on lg:hover) */}
             <span className="lg:hidden inline">
-              <IoIosArrowDown />
+              {dropdown ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </span>
 
             {/* For large screens, show down arrow by default, and switch to up on hover */}
@@ -226,25 +228,30 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 lg:-left-[20px] lg:right- lg:pt- w-full  border-orange-400 lg:w-[180px] shadow-lg lg:shadow-none lg:z-50"
+            className="
+            lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 w-full 
+             rounded-lg rounded-t-none lg:w-auto shadow-lg lg:shadow-none lg:z-50 max-h-[700px] overflow-y-auto border dark:border-black/65 bg-white/95 dark:bg-black/70 py-1"
           >
-            {uniqueCategory.map((category) => (
-              <div className="bg-white/95 dark:bg-black lg:px- px-2 py-1 lg:py-1 shadow-2xl">
-                <li key={category}>
-                  <NavLink
-                    to={`/category/${category.toLowerCase()}`}
-                    onClick={() => handleCategoryChange(category)}
-                    className={({ isActive }) =>
-                      isActive
-                        ? "block px-4 py-2 text-orange-400 border border-blue-500 "
-                        : "block px-4 py-2 hover:bg-black/10 dark:hover:bg-white/10 hover:text-orange-400 "
-                    }
-                  >
-                    {t(category)}
-                  </NavLink>
-                </li>
-              </div>
-            ))}
+            
+              {uniqueCategory.map((category) => (
+                <div className=" lg:px- px-2 shadow-2xl w-full max-h-[800px] min-w-max">
+                  <li key={category}>
+                    <NavLink
+                      to={`/category/${category.toLowerCase()}`}
+                      onClick={() => handleCategoryChange(category)}
+                      className={({ isActive }) =>
+                        isActive
+                          ? " px-3 py-1 text-sm md:text-base lg:text-base text-orange-400 flex justify-between items-center gap-3 text- border-b  border-gray-100 dark:border-black/30"
+                          : " px-3 py-1 text-sm md:text-base lg:text-base hover:bg-black/10 dark:hover:bg-white/10 hover:text-orange-400 flex justify-between items-center gap-3 border-b  border-gray-100 dark:border-black/30"
+                      }
+                    >
+                      <div>{t(category)} </div>
+                      <div><MdOutlineKeyboardArrowRight className="opacity-30 dark:text-white" /></div>
+                    </NavLink>
+                  </li>
+                </div>
+              ))}
+           
           </motion.ul>
         )}
       </li>
@@ -261,7 +268,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               : "text-inherit hover:text-orange-400 text-base lg:px- lg:py-1.5 md:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between text-lg lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1  md:py-0">
+          <h2 className="flex justify-between text-base lg:text-lg items-center gap-3 pl-2 lg:pl-0 lg:bg-transparent md:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1  md:py-0">
             <span>{t("Orders")} </span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>

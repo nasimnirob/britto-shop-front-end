@@ -6,7 +6,7 @@ import { TbCurrencyTaka } from "react-icons/tb";
 const OrderCard = ({ products }) => {
   console.log(products)
   return (
-    <div className="mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 dark:bg-black bg-white text-black bg-base-100 dark:text-white">
+    <div className="mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 dark:bg-black bg-white text-black bg-base-100 dark:text-white ">
       {products.map((product) => (
         <Link
           to={`/product/${product._id}`}

@@ -15,6 +15,7 @@ import SimpleProduct from "../Component/Product/SimpleProduct";
 import Dashboard from "../Dashboard/Pages/Dashboard";
 import User from "../Dashboard/Pages/User";
 import MainContent from "../Dashboard/component/MainContent";
+import SiteSettings from "../Dashboard/Pages/SiteSettings";
 
 
 
@@ -101,6 +102,12 @@ const Router = createBrowserRouter([
                 path: '/admin/user',
                 errorElement: <Error />,
                 element: <User></User>
+            }
+            ,
+            {
+                path: '/admin/sitesettings',
+                errorElement: <Error />,
+                element: <SiteSettings></SiteSettings>
             }
         ]
     },

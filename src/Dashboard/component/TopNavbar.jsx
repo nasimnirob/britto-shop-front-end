@@ -22,9 +22,9 @@ const TopNavbar = () => {
                 <div className="flex items-center space-x-3">
                     <button
                         onClick={() => setOpen(!open)}
-                        className="bg-gray-200 p-2 px-3 lg:hidden md:hidden"
+                        className="bg-gray-200 p-2 rounded-md text-blue-800 transition-all duration-500 lg:hidden md:hidden"
                     >
-                        <RiMenu2Line className="text-2xl text-black hover:text-blue-600" />
+                        <RiMenu2Line className="text-xl" />
                     </button>
 
                     <div className="relative">
@@ -67,9 +67,9 @@ const TopNavbar = () => {
                 {/* Close Button */}
                 <button
                     onClick={() => setOpen(false)}
-                    className="text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5"
+                    className="bg-gray-200 p-2 rounded-md text-blue-800 transition-all duration-500 absolute top-4 end-2.5 "
                 >
-                    <IoCloseSharp className="text-3xl text-blue-600" />
+                    <IoCloseSharp className="text-xl" />
                 </button>
 
                 {/* Nav Links */}
@@ -78,55 +78,55 @@ const TopNavbar = () => {
 
                         <li>
                             <NavLink to="/admin/dashboard" onClick={() => setOpen(false)} className="flex p-2 items-center hover:bg-gray-100 w-full">
-                                <RiHome4Fill className="text-xl text-gray-600" />
+                                <RiHome4Fill className="text-lg text-gray-600" />
                                 <span className="ms-3">Home</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/addMember" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <BsPersonFillAdd className="text-xl text-gray-600" />
+                                <BsPersonFillAdd className="text-lg text-gray-600" />
                                 <span className="ms-3 whitespace-nowrap">Add Mess Member</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/addDeposit" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <RiMoneyDollarBoxFill className="text-xl text-gray-600" />
+                                <RiMoneyDollarBoxFill className="text-lg text-gray-600" />
                                 <span className="ms-3 whitespace-nowrap">Add Money Deposit</span>
                             </NavLink>  
                         </li>
                         <li>
                             <NavLink to="/admin/mealRequest" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <MdOutlineSoupKitchen className="text-xl text-gray-700" />
+                                <MdOutlineSoupKitchen className="text-lg text-gray-700" />
                                 <span className="ms-3 whitespace-nowrap">Meal Request</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/addMeal" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <MdOutlineSoupKitchen className="text-xl text-gray-700" />
+                                <MdOutlineSoupKitchen className="text-lg text-gray-700" />
                                 <span className="ms-3 whitespace-nowrap">Add Meal</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/addCost" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <FaShoppingCart className="text-xl text-gray-600" />
+                                <FaShoppingCart className="text-lg text-gray-600" />
                                 <span className="ms-3 whitespace-nowrap">Add Cost</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/allMember" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <BsPeopleFill className="text-xl text-gray-600" />
+                                <BsPeopleFill className="text-lg text-gray-600" />
                                 <span className="ms-3 whitespace-nowrap">All Member</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/changeManager" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <FaPersonBooth className="text-xl text-gray-600" />
+                                <FaPersonBooth className="text-lg text-gray-600" />
                                 <span className="ms-3 whitespace-nowrap">Change Manager</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/admin/login" onClick={() => setOpen(false)} className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
-                                <CiLogout className="text-xl text-gray-950" />
+                                <CiLogout className="text-lg text-gray-950" />
                                 <span className="ms-3 whitespace-nowrap">Log Out</span>
                             </NavLink>
                         </li>

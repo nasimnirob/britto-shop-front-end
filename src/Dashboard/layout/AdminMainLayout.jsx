@@ -1,7 +1,7 @@
 import { RiMenu2Line } from "react-icons/ri";
 import Sidebar from "../component/Sidebar";
 import TopNavbar from "../component/TopNavbar";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import logo from '../../../public/logo.png'
 
@@ -9,7 +9,7 @@ const AdminMainLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     return (
-        <div className="mx-auto text-black">
+        <div className="mx-auto text-black ">
 
             {/* Top Navbar */}
             <div className={`fixed top-0 z-40 w-full bg-white shadow-md transition-all duration-300 ml-0
@@ -23,7 +23,7 @@ const AdminMainLayout = () => {
             <div className="lg:flex">
 
                 {/* Sidebar */}
-                <div className={`lg:fixed md:fixed hidden lg:block md:block left-0 top-0 h-screen px-1 z-40 bg-gray-100
+                <NavLink to='/' className={`lg:fixed md:fixed hidden lg:block md:block left-0 top-0 h-screen px-1 z-40 bg-gray-100 dark:bg-black
                     ${isSidebarOpen
                         ? "w-52 transition-all duration-500 overflow-hidden"
                         : "w-[57px] transition-all duration-500 overflow-hidden"
@@ -41,10 +41,10 @@ const AdminMainLayout = () => {
                     </div>
 
                     <Sidebar />
-                </div>
+                </NavLink>
 
                 {/* Main Content */}
-                <div className={`pt-[72px] w-full transition-all duration-500
+                <div className={`pt-[70px] min-h-screen w-full transition-all duration-500
                     ${isSidebarOpen
                         ? "lg:w-[calc(100%-230px)] md:w-[calc(100%-230px)] lg:ml-56 md:ml-56"
                         : "lg:w-[calc(100%-72px)] md:w-[calc(100%-72px)] lg:ml-16 md:ml-16 lg:pl-2"
@@ -61,7 +61,9 @@ const AdminMainLayout = () => {
                         <RiMenu2Line className="text-xl" />
                     </button>
 
-                    <Outlet />
+                    <div className="  bg-gray-100 p-4">  
+                        <Outlet />
+                    </div>
                 </div>
             </div>
         </div>

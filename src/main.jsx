@@ -7,6 +7,7 @@ import Router from './Routes/Router.jsx'
 import AuthProviders from './providers/AuthProviders.jsx'
 import { HelmetProvider } from 'react-helmet-async';
 import './i18n';
+import { SiteSettingsProvider } from './Context/SiteSettingsContext.jsx'
 
 // if (
 //   localStorage.theme === 'dark' ||
@@ -21,9 +22,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
       <AuthProviders>
-        <div className='max-w-screen- mx-auto bg-primary dark:bg-primary-dark font-time'>
-          <RouterProvider router={Router} />
-        </div>
+        <SiteSettingsProvider>
+          <div className='max-w-screen- mx-auto bg-primary dark:bg-primary-dark font-time'>
+            <RouterProvider router={Router} />
+          </div>
+        </SiteSettingsProvider>
       </AuthProviders>
     </HelmetProvider>
   </StrictMode>,

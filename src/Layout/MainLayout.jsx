@@ -81,27 +81,26 @@ const MainLayout = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // ✅ loader state
   const [loading, setLoading] = useState(false);
-
-  // ✅ route detect
+  const [showLoader, setShowLoader] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
+    setShowLoader(true);
     setLoading(true);
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+      setTimeout(() => setShowLoader(false), 300); // fade শেষ হওয়ার পর DOM থেকে সরাও
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
-
   return (
     <div className="min-h-screen flex flex-col">
 
       {/* ✅ Loader */}
-      {loading && <RouteLoader />}
+      {showLoader && <RouteLoader loading={loading} />}
 
       {/* ✅ Navbar */}
       <div className="lg:mt-[105px] md:mt-[105px] mt-[66px]">
