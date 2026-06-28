@@ -27,7 +27,7 @@ const Cover = () => {
                     <div className="hero-content text-neutral-content text-center flex-col lg:flex-row lg:gap-9 gap-2">
                         <img className='my-2 lg:my-0 lg:w-1/2 md:w-2/3 rounded transition-transform duration-300 transform hover:scale-105' src={img2} alt="" />
                         <div className="max-w-md">
-                            <h1 className="mb-7 text-5xl font-bold text-orange-500">ব্রিট্টো শপ</h1>
+                            <h1 className="mb-7 text-5xl font-bold text-orange-500">বৃত্ত শপ</h1>
                             <p className="mb-7">
                                 আমরা মানসম্মত পণ্য ও সেবা দিয়ে থাকি গ্রাহকের সন্তুষ্টিকে অগ্রাধিকার দিয়ে। প্রতিদিনের প্রয়োজনীয় সবকিছু এক ছাদের নিচে।
                                 <span>

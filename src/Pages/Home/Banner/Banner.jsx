@@ -590,7 +590,7 @@ import "swiper/css/thumbs";
 import img3 from "../../../assets/banner/Web-Cover-2026--Panjabi.jpeg";
 import img5 from "../../../assets/banner/pp.jpeg";
 
-const images = [img3, img5];
+const images = ['https://i.ibb.co.com/zWs5rhyD/cc9973b9183688b983c16e1891dcceb0.jpg'];
 
 const Banner = () => {
     const swiperRef = useRef(null);

@@ -241,8 +241,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                       onClick={() => handleCategoryChange(category)}
                       className={({ isActive }) =>
                         isActive
-                          ? " px-3 py-1 text-sm md:text-base lg:text-base text-orange-400 flex justify-between items-center gap-3 text- border-b  border-gray-100 dark:border-black/30"
-                          : " px-3 py-1 text-sm md:text-base lg:text-base hover:bg-black/10 dark:hover:bg-white/10 hover:text-orange-400 flex justify-between items-center gap-3 border-b  border-gray-100 dark:border-black/30"
+                          ? " px-3 py-1 text-base md:text-base lg:text-lg text-orange-400 flex justify-between items-center gap-3 text- border-b  border-gray-100 dark:border-black/30"
+                          : " px-3 py-1 text-base md:text-base lg:text-lg hover:bg-black/5  dark:hover:bg-white/10 hover:text-orange-400 flex justify-between items-center gap-3 border-b  border-gray-100 dark:border-black/30"
                       }
                     >
                       <div>{t(category)} </div>
@@ -450,7 +450,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
           </div>
 
-          <div className="navbar-end flex justify-end items-center lg:gap-6 md:gap-4 gap-2">
+          <div className="navbar-end flex justify-end items-center lg:gap-3 md:gap-2 gap-2">
             <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
               <button onClick={() => setOpenSearch(prev => !prev)}>
                 <CiSearch className="w-10 h-10 rounded-full p-1 mt-0.5 hover:bg-black/10 dark:hover:bg-black/15" />
@@ -480,9 +480,9 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
 
             <div
               ref={profileRef}
-              className={` relative ml-1 flex items-center justify-center rounded-full h-10
-    ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 "}
-  `}
+              className={`relative ml-1 flex items-center justify-center rounded-full h-10
+                        ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 "}
+                        `}
               onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
               onMouseLeave={() => window.innerWidth >= 768 && setOpenProfile(false)}
             >
@@ -515,8 +515,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                       }}
                       className={({ isActive }) =>
                         isActive
-                          ? "hover:text-orange-400 text-base lg:block md:block hidden "
-                          : "text-inherit hover:text-orange-400 text-base lg:block md:block hidden"
+                          ? "hover:text-orange-400 text-base lg:block md:block hidden mr-3"
+                          : "text-inherit hover:text-orange-400 text-base lg:block md:block hidden mr-3"
                       }
                     >
                       <h2 className="flex flex-row justify-center items-center gap-2 lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
@@ -643,8 +643,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
 
             <div ref={cartRef} className={`relative ml-1 flex items-center justify-center rounded-full
-    ${openCart ? "bg-black/15 dark:bg-black/10 w-10 h-10" : "hover:bg-black/10 w-10 h-10 dark:hover:bg-black/15"}
-  `}
+                      ${openCart ? "bg-black/15 dark:bg-black/10 w-10 h-10" : "hover:bg-black/10 w-10 h-10 dark:hover:bg-black/15"}
+                      `}
               onMouseEnter={() => window.innerWidth >= 768 && setOpenCart(true)}
             // onMouseLeave={() => window.innerWidth >= 768 && setOpenCart(false)}
             >
