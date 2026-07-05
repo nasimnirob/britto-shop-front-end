@@ -1,19 +1,29 @@
 import { Link } from "react-router-dom";
 import ZoomImage from "../ZoomImage";
 import { TbCurrencyTaka } from "react-icons/tb";
+import ProductCardSkeleton from "../Shared/ProductCardSkeleton";
 
 
-const OrderCard = ({ products }) => {
+const OrderCard = ({ products, loading }) => {
+  if (loading) {
+    return (
+      <div className="mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <ProductCardSkeleton key={index} />
+        ))}
+      </div>
+    );
+  }
   console.log(products)
   return (
-    <div className="mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3 dark:bg-black bg-white text-black bg-base-100 dark:text-white ">
+    <div className="mx-2 grid lg:grid-cols-4 md:grid-cols-3 bg-white dark:bg-primary-dark grid-cols-2 gap-3 text-black bg-base-100 dark:text-white ">
       {products.map((product) => (
         <Link
           to={`/product/${product._id}`}
           state={{ product }}
           key={product._id}
-          className="card shadow-md">
-          <figure className="relative">
+          className="card shadow-sm border rounded-md">
+          <figure className="relative p-2 rounded-sm">
             <ZoomImage src={product.image} alt={product.name} />
             <p className="font-poppins text-sm absolute right-0 top-0 bg-[#ff0066] text-white rounded-md p-1 flex items-center ">
               <TbCurrencyTaka className="text-xl" />{product.price}

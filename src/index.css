@@ -22,7 +22,7 @@
 }
 
 .dark{
-   --background:#0d0d0d;
+   --background:#1c1c1d;
   --text:#f0eeee;
   --secondary:#e3e3e3;
 }
@@ -90,34 +90,6 @@ body {
   width: 0;
 }
 
-
-/* * {
-  scrollbar-width: thin !important;
-  scrollbar-color: #949497 #f1f1f1 !important;
-}
-
-::-webkit-scrollbar {
-  width: 3px !important;
-}
-
-::-webkit-scrollbar-track {
-  background: #ffffff !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #949497 !important;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #8b8b8f !important;
-}
-
-::-webkit-scrollbar-button {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-} */
 
 
 .route-loader {

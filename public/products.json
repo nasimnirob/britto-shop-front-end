@@ -538,7 +538,7 @@
   },
   {
     "_id": 4007,
-    "category": "Popular",
+    "category": "Sports",
     "name": "Bike Helmet",
     "description": "STYLE:\nPremium China Polo Design\nSmart Casual & Trendy Look\n\nFABRIC:\nPremium China Fabric\nSmooth, Soft & Comfortable\n\nSLEEVE:\nHalf Sleeve\n\nSIZE:\nM, L, XL, XXL",
     "price": 39.99,
@@ -610,6 +610,32 @@
   {
     "_id": 4014,
     "category": "sdklfioiwe sdkfoiw ndofi dfgvedf ",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  },
+  {
+    "_id": 4015,
+    "category": "sdklfioiw ",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  }
+  ,
+  {
+    "_id": 4016,
+    "category": "sdklfioiw sf",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
+  }
+  ,
+  {
+    "_id": 4017,
+    "category": "sdklfioiw evwse",
     "name": "Hoodie Combo",
     "description": "Adjustable cycling helmet for adults.",
     "price": 39.99,

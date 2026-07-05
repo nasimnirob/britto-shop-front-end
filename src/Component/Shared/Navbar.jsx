@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineLeft } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { TiArrowLeft } from "react-icons/ti";
 import { PiBagLight } from "react-icons/pi";
 import { BsDashLg } from "react-icons/bs";
 import { motion } from "framer-motion";
@@ -31,6 +32,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
   const [theme, toggleTheme] = useTheme();
   const [isSticky, setIsSticky] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
 
   // console.log(open)
 
@@ -110,15 +112,34 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
+  // isSticky And hide/show direction
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 30);
+      const currentScrollY = window.scrollY;
+
+      // Sticky background
+      setIsSticky(currentScrollY > 30);
+
+      // Top এ থাকলে সবসময় show
+      if (currentScrollY < 50) {
+        setShowNavbar(true);
+      }
+      // নিচে scroll করলে hide
+      else if (currentScrollY > lastScrollY) {
+        setShowNavbar(false);
+      }
+      // উপরে scroll করলে show
+      else {
+        setShowNavbar(true);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Clean up
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -232,26 +253,26 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 w-full 
              rounded-lg rounded-t-none lg:w-auto shadow-lg lg:shadow-none lg:z-50 max-h-[700px] overflow-y-auto border dark:border-black/65 bg-white/95 dark:bg-black/70 py-1"
           >
-            
-              {uniqueCategory.map((category) => (
-                <div className=" lg:px- px-2 shadow-2xl w-full max-h-[800px] min-w-max">
-                  <li key={category}>
-                    <NavLink
-                      to={`/category/${category.toLowerCase()}`}
-                      onClick={() => handleCategoryChange(category)}
-                      className={({ isActive }) =>
-                        isActive
-                          ? " px-3 py-1 text-base md:text-base lg:text-lg text-orange-400 flex justify-between items-center gap-3 text- border-b  border-gray-100 dark:border-black/30"
-                          : " px-3 py-1 text-base md:text-base lg:text-lg hover:bg-black/5  dark:hover:bg-white/10 hover:text-orange-400 flex justify-between items-center gap-3 border-b  border-gray-100 dark:border-black/30"
-                      }
-                    >
-                      <div>{t(category)} </div>
-                      <div><MdOutlineKeyboardArrowRight className="opacity-30 dark:text-white" /></div>
-                    </NavLink>
-                  </li>
-                </div>
-              ))}
-           
+
+            {uniqueCategory.map((category) => (
+              <div className=" lg:px- px-2 shadow-2xl w-full max-h-[800px] min-w-max">
+                <li key={category}>
+                  <NavLink
+                    to={`/category/${category.toLowerCase()}`}
+                    onClick={() => handleCategoryChange(category)}
+                    className={({ isActive }) =>
+                      isActive
+                        ? " px-3 py-1 text-base md:text-base lg:text-lg text-orange-400 flex justify-between items-center gap-3 text- border-b  border-gray-100 dark:border-black/30"
+                        : " px-3 py-1 text-base md:text-base lg:text-lg hover:bg-black/5  dark:hover:bg-white/10 hover:text-orange-400 flex justify-between items-center gap-3 border-b  border-gray-100 dark:border-black/30"
+                    }
+                  >
+                    <div>{t(category)} </div>
+                    <div><MdOutlineKeyboardArrowRight className="opacity-30 dark:text-white" /></div>
+                  </NavLink>
+                </li>
+              </div>
+            ))}
+
           </motion.ul>
         )}
       </li>
@@ -334,375 +355,409 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
     </>
   );
   return (
-    <div className="z- relative">
-      <div className={` w-full fixed top-0 left-0 z-50 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/50 shadow-md rounded-b-[4.5px] text-white" : "bg-transparent rounded-b-[4.5px] text-black dark:text-white bg-white dark:bg-primary-dark"
-        }`}>
+    <div className=" relative">
+      {/* <div className={` w-full fixed top-0 left-0 z-50 backdrop-blur-[6px] transition-all duration-300 mt- ${isSticky ? "bg-black/40 backdrop-blur-xl shadow-md  text-white" : "bg-transparent  text-black dark:text-white bg-white dark:bg-primary-dark"
+        }`}> */}
+      <div
+        // className={`w-full fixed top-0 left-0 z-50
+        // transition-all duration-300 ease-in-out 
+        // ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+        // ${isSticky
+        //     ? "bg-black/40 backdrop-blur-xl shadow-md text-white"
+        //     : "bg-white dark:bg-primary-dark text-black dark:text-white"
+        //   }`}
+        className="fixed top-0 left-0 w-full z-50"
+      >
         <div
-          className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white " : "text-black dark:text-white"
+          // className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white" : "text-black dark:text-white"
+          //   }`}
+          className={`navbar mx-auto flex items-center justify-between  w-full fixed top-0 left-0 z-50 py-0
+            transition-all duration-300 ease-in-out 
+            ${showNavbar ? "translate-y-0 " : "-translate-y-full "}
+            ${isSticky
+              ? "bg-black/40 backdrop-blur-xl  shadow-md text-white"
+              : "bg-transparent dark:bg-[#252728] text-black dark:text-white"
             }`}
         >
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                onClick={handleToggle}
-                role="button"
-                className="w-10 h-10 hover:bg-black/10 rounded-full lg:hidden md:hidden select-none"
-              >
-                {open ? (
-                  <AiOutlineClose className="h-10 w-10 p-2" />
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-10 w-10 p-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h8m-8 6h16"
-                    />
-                  </svg>
-                )}
-              </div>
+          <div className="flex mx-auto justify-between items-center navbar max-w-[1524px]">
+            <div className="navbar-start">
+              <div className="dropdown">
+                <div
+                  onClick={handleToggle}
+                  role="button"
+                  className="w-10 h-10 hover:bg-black/10 rounded-full lg:hidden md:hidden select-none"
+                >
+                  {open ? (
+                    <AiOutlineClose className="h-10 w-10 p-2" />
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-10 w-10 p-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h8m-8 6h16"
+                      />
+                    </svg>
+                  )}
+                </div>
 
-              <ul
-                ref={menuRef}
-                className={`lg:hidden md:hidden fixed top-0 left-0 h-screen 
+                <ul
+                  ref={menuRef}
+                  className={`lg:hidden md:hidden fixed top-0 left-0 h-screen 
                     lg:w-[505px] md:w-[240px] sm:w-[320px] w-[300px]
                     z-40 bg-black/30 backdrop-blur-md
                     border border-gray-600 shadow-sm text-white
                     transform transition-transform duration-500 ease-in-out
                     ${open ? "translate-x-0" : "-translate-x-full"}
                   `}
-              >
-                < div className="flex flex-row  lg:hidden md:hidden pt-2.5 pl-2 pb-4 bg-black/20">
-                  <div
-                    onClick={handleToggle}
-                    role="button"
-                    className="w-10 h-10 hover:bg-black/10 rounded-full lg:hidden md:hidden"
-                  >
-                    {open ? (
-                      <AiOutlineClose className="h-10 w-10 p-2" />
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-10 w-10 p-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M4 6h16M4 12h8m-8 6h16"
-                        />
-                      </svg>
-                    )}
+                >
+                  < div className="flex flex-row  lg:hidden md:hidden pt-2.5 pl-2 pb-4 bg-black/20">
+                    <div
+                      onClick={handleToggle}
+                      role="button"
+                      className="w-10 h-10 hover:bg-black/10 rounded-full lg:hidden md:hidden"
+                    >
+                      {open ? (
+                        <AiOutlineClose className="h-10 w-10 p-2" />
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-10 w-10 p-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M4 6h16M4 12h8m-8 6h16"
+                          />
+                        </svg>
+                      )}
+                    </div>
+                    <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4 select-none">
+                      <NavLink to="/" className="px- ">
+                        <div className="flex flex-col items-center w-fit text-center">
+                          <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
+                            Britto Shop
+                          </span>
+                          <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
+                            E C O M M E R C E
+                          </span>
+                        </div>
+                      </NavLink>
+                    </div>
                   </div>
-                  <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4 select-none">
-                    <NavLink to="/" className="px- ">
-                      <div className="flex flex-col items-center w-fit text-center">
-                        <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
-                          Britto Shop
-                        </span>
-                        <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
-                          E C O M M E R C E
-                        </span>
-                      </div>
-                    </NavLink>
+                  {navLink}
+                </ul>
+              </div>
+              <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4">
+                <NavLink to="/" className="px- ">
+                  <div className="flex flex-col items-center w-fit text-center">
+                    <span className="text-[13.5px] sm:text-base lg:text-xl hover:text-orange-400 uppercase ">
+                      Britto Shop
+                    </span>
+                    <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
+                      E C O M M E R C E
+                    </span>
                   </div>
-                </div>
-                {navLink}
-              </ul>
+                </NavLink>
+              </div>
             </div>
-            <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4">
-              <NavLink to="/" className="px- ">
-                <div className="flex flex-col items-center w-fit text-center">
-                  <span className="text-[13.5px] sm:text-base lg:text-xl text-orange-400 uppercase ">
-                    Britto Shop
-                  </span>
-                  <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
-                    E C O M M E R C E
-                  </span>
-                </div>
-              </NavLink>
-            </div>
-          </div>
 
-          <div className="navbar-center hidden lg:flex md:block  items-center justify-center px-0.5">
-            <div className="  lg:w-full  ">
-              <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border border-dashed border-[#fb923c] text-center justify-center">
-                <input
-                  className={`font-extralight font-poppins w-full px-3 py-2 bg-black/5 placeholder:text-sm ${isSticky ? 'placeholder:text-gray-100 dark:placeholder:text-gray-300' : 'placeholder:text-gray-600 dark:placeholder:text-gray-200'} text-base outline-none ring-0 focus:outline-none rounded-l-[5px]`}
-                  type="search"
-                  placeholder="Search product name..."
-                />
-                <div className="border-dashed border-l border-[#fb923c]">
-                  <button className="h-10 w-[36px] flex items-center justify-center bg-[#fb923c] hover:bg-yellow-500 transition text-black border-[#fb923c] border-l border-dashed">
-                    <CiSearch className="absolute" />
-                  </button>
+            <div className="navbar-center hidden lg:flex md:block  items-center justify-center px-0.5">
+              <div className="  lg:w-full  ">
+                <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border border-dashed border-[#fb923c] text-center justify-center">
+                  <input
+                    className={`font-extralight font-poppins w-full px-3 py-2 bg-black/5 placeholder:text-sm ${isSticky ? 'placeholder:text-gray-100 dark:placeholder:text-gray-300' : 'placeholder:text-gray-600 dark:placeholder:text-gray-200'} text-base outline-none ring-0 focus:outline-none rounded-l-[5px]`}
+                    type="search"
+                    placeholder="Search product name..."
+                  />
+                  <div className="border-dashed border-l border-[#fb923c]">
+                    <button className="h-10 w-[36px] flex items-center justify-center bg-[#fb923c] hover:bg-yellow-500 transition text-black border-[#fb923c] border-l border-dashed">
+                      <CiSearch className="absolute" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="navbar-end flex justify-end items-center lg:gap-3 md:gap-2 gap-2">
-            <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
-              <button onClick={() => setOpenSearch(prev => !prev)}>
-                <CiSearch className="w-10 h-10 rounded-full p-1 mt-0.5 hover:bg-black/10 dark:hover:bg-black/15" />
-              </button>
-            </div>
-            <div
-              className={`
-                fixed top-16 left-0 w-full z-40
+            <div className="navbar-end flex justify-end items-center lg:gap-3 md:gap-2 gap-2">
+              <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
+                <button onClick={() => setOpenSearch(prev => !prev)}>
+                  <CiSearch className="w-10 h-10 rounded-full p-1 mt-0.5 hover:bg-black/10 dark:hover:bg-black/15" />
+                </button>
+              </div>
+              <div
+                className={`
+                fixed top-0 left-0 w-full z-40
                 lg:hidden md:hidden
                 transition-all duration-300 ease-in-out
                 ${openSearch ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
               `}
-            >
-              <div className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-black shadow-md">
-                <input
-                  type="text"
-                  placeholder="Search product..."
-                  className="w-full px-3 py-2 rounded-md border outline-none text-black dark:text-white"
-                  autoFocus
-                />
-                <button onClick={() => setOpenSearch(false)}>
-                  <AiOutlineClose className="text-2xl" />
-                </button>
+              >
+                <div className="flex  items-center gap-2 px-4 py-3 bg-white dark:bg-primary-dark  dark:text-[#d9dadb] shadow-md">
+                  <button onClick={() => setOpenSearch(false)}>
+                    <TiArrowLeft className="text-2xl text-black dark:text-[#d9dadb]" />
+                  </button>
+                  <input
+                    type="text"
+                    placeholder="Search product..."
+                    className="font-poppins text-base w-1/2 px-4 py-2 rounded-full outline-none text-black dark:text-[#d9dadb] dark:bg-[#3B3D3E]"
+                    autoFocus
+                  />
+                  
+                </div>
               </div>
-            </div>
 
 
-            <div
-              ref={profileRef}
-              className={`relative ml-1 flex items-center justify-center rounded-full h-10
+              <div
+                ref={profileRef}
+                className={`relative ml-1 flex items-center justify-center rounded-full h-10
                         ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 "}
                         `}
-              onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
-              onMouseLeave={() => window.innerWidth >= 768 && setOpenProfile(false)}
-            >
+                onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
+                onMouseLeave={() => window.innerWidth >= 768 && setOpenProfile(false)}
+              >
 
-              {
-                user ? <>
-                  <div className="">
-                    <button className="lg:block md:block hidden lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
-                      {loading ? (
-                        <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
-                      ) : user?.photoURL ? (
-                        <img
-                          className="rounded-full p-1 w-10 h-10  hover:bg-black/10 dark:hover:bg-black/15"
-                          src={user?.photoURL}
-                          alt="Profile"
-                          referrerPolicy="no-referrer"
-                        />
-                      ) : (
-                        <RxPerson className="text-4xl rounded-full border-yellow-700 p-1 mt-1.5 hover:bg-black/10 dark:hover:bg-black/15" />
-                      )}
-                    </button>
-                  </div>
-                </>
-                  :
-                  <>
-                    <NavLink
-                      to="/login"
-                      onClick={() => {
-                        setOpen(false);
-                      }}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "hover:text-orange-400 text-base lg:block md:block hidden mr-3"
-                          : "text-inherit hover:text-orange-400 text-base lg:block md:block hidden mr-3"
-                      }
-                    >
-                      <h2 className="flex flex-row justify-center items-center gap-2 lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
-                        <span>{t("Login")} </span>
-                        <span><RxPerson /></span>
-                      </h2>
-                    </NavLink>
+                {
+                  user ? <>
+                    <div className="">
+                      <button className="lg:block md:block hidden lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
+                        {loading ? (
+                          <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                        ) : user?.photoURL ? (
+                          <img
+                            className="rounded-full p-1 w-10 h-10  hover:bg-black/10 dark:hover:bg-black/15"
+                            src={user?.photoURL}
+                            alt="Profile"
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <RxPerson className="text-4xl rounded-full border-yellow-700 p-1 mt-1.5 hover:bg-black/10 dark:hover:bg-black/15" />
+                        )}
+                      </button>
+                    </div>
                   </>
-              }
-
-              {/* Profile Button */}
-              <div className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400 "
-                onClick={handleProfileToggle}
-              >
-                <button className="">
-                  {loading ? (
-                    <div className=" w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
-                  ) : user?.photoURL ? (
-                    <img
-                      className=" rounded-full p-1 w-10 h-10  hover:bg-black/5 dark:hover:bg-black/15"
-                      src={user?.photoURL}
-                      alt="Profile"
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
+                    :
                     <>
-                      <RxPerson className={`${openProfile
-                        ? "text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 bg-black/10 dark:bg-black/15 hover:bg-black/10 dark:hover:bg-black/15"
-                        : "text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 hover:bg-black/10 dark:hover:bg-black/15"}`} />
+                      <NavLink
+                        to="/login"
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "hover:text-orange-400 text-base lg:block md:block hidden mr-3"
+                            : "text-inherit hover:text-orange-400 text-base lg:block md:block hidden mr-3"
+                        }
+                      >
+                        <h2 className="flex flex-row justify-center items-center gap-2 lg:h-16 md:h-16 h-10 -mt-4 -mb-4">
+                          <span>{t("Login")} </span>
+                          <span><RxPerson /></span>
+                        </h2>
+                      </NavLink>
                     </>
-                  )}
-                </button>
-              </div>
+                }
 
-              {/* Dropdown Panel — SHOW ON HOVER */}
-              <div
-                className={`absolute -right-14 top-[50px] w-64 
-                bg-white dark:bg-primary-dark dark:text-white text-white 
-                  rounded-md shadow-lg dark:border-gray-600 z-50
-                  ${openProfile ? "block" : "hidden"}`}
-              >
-
-                <div className="flex items-center justify-center">
-                  <LanguageSelector />
-                  <button
-                    onClick={toggleTheme}
-                    className="px-1 py-[3.5px] -mt-2 hover:bg-gray-200 dark:hover:bg-gray-700
-                 text-lg flex justify-center items-center text-black
-                 hover:text-orange-400 border dark:border-gray-600 rounded-r"
-                  >
-                    {theme === "dark" ? (
-                      <span className="flex items-center justify-between gap-2 dark:text-white">
-                        <p>Light</p> <BiSun />
-                      </span>
+                {/* Profile Button */}
+                <div className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400 "
+                  onClick={handleProfileToggle}
+                >
+                  <button className="">
+                    {loading ? (
+                      <div className=" w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                    ) : user?.photoURL ? (
+                      <img
+                        className=" rounded-full p-1 w-10 h-10  hover:bg-black/5 dark:hover:bg-black/15"
+                        src={user?.photoURL}
+                        alt="Profile"
+                        referrerPolicy="no-referrer"
+                      />
                     ) : (
-                      <span className="flex items-center justify-between gap-2 dark:text-white">
-                        <p>Dark</p> <BiMoon />
-                      </span>
+                      <>
+                        <RxPerson className={`${openProfile
+                          ? "text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 bg-black/10 dark:bg-black/15 hover:bg-black/10 dark:hover:bg-black/15"
+                          : "text-4xl hover:text-[36px] rounded-full border-yellow-700 p-1 mt-1 hover:bg-black/10 dark:hover:bg-black/15"}`} />
+                      </>
                     )}
                   </button>
                 </div>
 
-                <div className=" flex flex-col items-center p-4 text-black dark:text-white">
-                  {user ? (
-                    <img
-                      className="w-20 h-20 rounded-full border border-gray-100 dark:border-gray-600"
-                      src={user?.photoURL}
-                      alt="Profile"
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
-                    <RxPerson className=" w-16 h-16 p-1" />
-                  )}
+                {/* Dropdown Panel — SHOW ON HOVER */}
+                <div
+                  className={`absolute -right-14 top-[50px] w-64 
+                bg-white dark:bg-primary-dark dark:text-white text-white 
+                  rounded-md shadow-lg dark:border-gray-600 z-50
+                  ${openProfile ? "block" : "hidden"}`}
+                >
 
-                  <h3 className="mt-3 font-semibold">
-                    {user?.displayName || t("Guest User")}
-                  </h3>
+                  <div className="flex items-center justify-center">
+                    <LanguageSelector />
+                    <button
+                      onClick={toggleTheme}
+                      className="px-1 py-[3.5px] -mt-2 hover:bg-gray-200 dark:hover:bg-gray-700
+                 text-lg flex justify-center items-center text-black
+                 hover:text-orange-400 border dark:border-gray-600 rounded-r"
+                    >
+                      {theme === "dark" ? (
+                        <span className="flex items-center justify-between gap-2 dark:text-white">
+                          <p>Light</p> <BiSun />
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-between gap-2 dark:text-white">
+                          <p>Dark</p> <BiMoon />
+                        </span>
+                      )}
+                    </button>
+                  </div>
 
-                  <p className="text-sm text-gray-600 dark:text-gray-400 ">
-                    {user?.email || "guest@example.com"}
+                  <div className=" flex flex-col items-center p-4 text-black dark:text-white">
+                    {user ? (
+                      <img
+                        className="w-20 h-20 rounded-full border border-gray-100 dark:border-gray-600"
+                        src={user?.photoURL}
+                        alt="Profile"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <RxPerson className=" w-16 h-16 p-1" />
+                    )}
+
+                    <h3 className="mt-3 font-semibold">
+                      {user?.displayName || t("Guest User")}
+                    </h3>
+
+                    <p className="text-sm text-gray-600 dark:text-gray-400 ">
+                      {user?.email || "guest@example.com"}
+                    </p>
+                  </div>
+
+                  <div className="border-t">
+                    {user ? (
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-center text-red-600 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        {t("Logout")}
+                      </button>
+                    ) : (
+                      <div className="flex flex-col">
+                        <NavLink
+                          to="/login"
+                          onClick={() => {
+                            setOpenProfile(false);
+                          }}
+                          className={({ isActive }) =>
+                            `py-2 px-4 text-center text-black dark:text-white ${isActive ? "text-orange-400" : ""
+                            } hover:bg-gray-100 dark:hover:bg-gray-700`
+                          }
+                        >
+                          {t("Login")}
+                        </NavLink>
+
+                        <NavLink
+                          to="/register"
+                          onClick={() => {
+                            setOpenProfile(false);
+                          }}
+                          className={({ isActive }) =>
+                            `py-2 px-4 text-center text-black dark:text-white border-t ${isActive ? "text-orange-400" : ""
+                            } hover:bg-gray-100 dark:hover:bg-gray-700`
+                          }
+                        >
+                          {t("Register")}
+                        </NavLink>
+                      </div>
+                    )}
+                  </div>
+
+                </div>
+              </div>
+
+              <div ref={cartRef} className={`relative ml-1 flex items-center justify-center rounded-full
+                      ${openCart ? "bg-black/15 dark:bg-black/10 w-10 h-10" : "hover:bg-black/10 w-10 h-10 dark:hover:bg-black/15"}
+                      `}
+              //   onMouseEnter={() => window.innerWidth >= 768 && setOpenCart(true)}
+              // onMouseLeave={() => window.innerWidth >= 768 && setOpenCart(false)}
+              >
+                <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center h-16 -mb-4 -mt-4 py-2.5 hover:text-orange-400 border border-none">
+                  <p className="hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px- py-1 xl:px- w-full h-12 -mb- ">
+                    <PiBagLight className="rounded-full p-1 mt-[1px] w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15" />
+                    <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white -top-2 lg:right- xl:right-1 md:right-1 right-1 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
                   </p>
                 </div>
 
-                <div className="border-t">
-                  {user ? (
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-center text-red-600 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    >
-                      {t("Logout")}
-                    </button>
-                  ) : (
-                    <div className="flex flex-col">
-                      <NavLink
-                        to="/login"
-                        onClick={() => {
-                          setOpenProfile(false);
-                        }}
-                        className={({ isActive }) =>
-                          `py-2 px-4 text-center text-black dark:text-white ${isActive ? "text-orange-400" : ""
-                          } hover:bg-gray-100 dark:hover:bg-gray-700`
-                        }
-                      >
-                        {t("Login")}
-                      </NavLink>
-
-                      <NavLink
-                        to="/register"
-                        onClick={() => {
-                          setOpenProfile(false);
-                        }}
-                        className={({ isActive }) =>
-                          `py-2 px-4 text-center text-black dark:text-white border-t ${isActive ? "text-orange-400" : ""
-                          } hover:bg-gray-100 dark:hover:bg-gray-700`
-                        }
-                      >
-                        {t("Register")}
-                      </NavLink>
-                    </div>
-                  )}
-                </div>
-
-              </div>
-            </div>
-
-            <div ref={cartRef} className={`relative ml-1 flex items-center justify-center rounded-full
-                      ${openCart ? "bg-black/15 dark:bg-black/10 w-10 h-10" : "hover:bg-black/10 w-10 h-10 dark:hover:bg-black/15"}
-                      `}
-              onMouseEnter={() => window.innerWidth >= 768 && setOpenCart(true)}
-            // onMouseLeave={() => window.innerWidth >= 768 && setOpenCart(false)}
-            >
-              <div onClick={handleCartToggle} className=" cursor-pointer flex items-center justify-center h-16 -mb-4 -mt-4 py-2.5 hover:text-orange-400 border border-none">
-                <p className="hover:text-orange-400 text-base lg:px- lg:py-1 md:py- md:px- py-1 xl:px- w-full h-12 -mb- ">
-                  <PiBagLight className="rounded-full p-1 mt-[1px] w-10 h-10 hover:bg-black/10 dark:hover:bg-black/15" />
-                  <span className=" absolute rounded-full bg-red-600 text-sm border px-[px]  text-center hover:text-white text-white -top-2 lg:right- xl:right-1 md:right-1 right-1 border-none"><p className="font-bold text-sm hover:text-base h-4 w-4 flex items-center mt-0.5 border-none justify-center">5</p></span>
-                </p>
-              </div>
-
-              <div
-                className={
-                  openCart
-                    ? "fixed right-0 top-[52px] h-screen mt-3 lg:w-[505px] md:w-[505px] sm:w-[505px] w-[300px] p-2 z-40 bg-black/15 dark:border-gray-600 border-gray-600 border rounded-md shadow-sm backdrop-blur-[900px] text-white transform translate-x-0 transition-all duration-500 ease-out"
-                    : "fixed right-0 top-[64px] h-screen lg:w-[505px] md:w-[505px] sm:w-[505px] w-[400px] z-40 transform translate-x-full transition-all duration-500 ease-out"
-                }
-
-              >
                 <div
-                  className="relative lg:left-[440px] md:left-[440px] sm:left-[440px] left-[350px] top-3.5 w-7 border bg-gray-600 hover:bg-red-500 border-gray-500 h-6 cursor-pointer lg:hidden md:hidden block"
-                  onClick={handleCartToggle}
-                >
-                  <AiOutlineClose className="text-xl text-white ml-[3px] font-thin" />
-                </div>
+                  className={
+                    openCart
+                      ? "fixed right-0 top-[52px] h-screen mt-3 lg:w-[505px] md:w-[505px] sm:w-[505px] w-[300px] p-2 z-40 bg-black/15 dark:border-gray-600 border-gray-600 border rounded-md shadow-sm backdrop-blur-[900px] text-white transform translate-x-0 transition-all duration-500 ease-out"
+                      : "fixed right-0 top-[64px] h-screen lg:w-[505px] md:w-[505px] sm:w-[505px] w-[400px] z-40 transform translate-x-full transition-all duration-500 ease-out"
+                  }
 
-                <div className="group relative lg:left-[440px] md:left-[440px] sm:left-[440px] left-[350px]  top-3.5 w-7 border bg-gray-600 hover:bg-red-500 border-gray-500 h-6  cursor-pointer lg:block md:block hidden" onClick={handleCartToggle}>
-                  {/* Close Icon (default) */}
-                  <AiOutlineClose
-                    className="
+                >
+                  <div
+                    className="relative lg:left-[440px] md:left-[440px] sm:left-[440px] left-[350px] top-3.5 w-7 border bg-gray-600 hover:bg-red-500 border-gray-500 h-6 cursor-pointer lg:hidden md:hidden block"
+                    onClick={handleCartToggle}
+                  >
+                    <AiOutlineClose className="text-xl text-white ml-[3px] font-thin" />
+                  </div>
+
+                  <div className="group relative lg:left-[440px] md:left-[440px] sm:left-[440px] left-[350px]  top-3.5 w-7 border bg-gray-600 hover:bg-red-500 border-gray-500 h-6  cursor-pointer lg:block md:block hidden" onClick={handleCartToggle}>
+                    {/* Close Icon (default) */}
+                    <AiOutlineClose
+                      className="
                   absolute inset-0 
                   text-xl text-white
                   transition-opacity duration-100
                   opacity-100 group-hover:opacity-0 ml-[3px] font-thin
                 "
-                  />
+                    />
 
-                  {/* Dash Icon (on hover) */}
-                  <BsDashLg
-                    className="
+                    {/* Dash Icon (on hover) */}
+                    <BsDashLg
+                      className="
                   absolute inset-0 
                   text-xl text-white
                   transition-opacity duration-100
                   opacity-0 group-hover:opacity-100 ml-[3px] font-thin hover:text-white
                 "
-                  />
-                </div>
+                    />
+                  </div>
 
-                <div className="flex items-center justify-center font-mono h-2/6 w-full mt-8">
-                  <h1 className="lg:text-2xl md:text-xl sm:text-sm text-[15px] hover:text-blue-500">Your cart is currently empty.</h1>
+                  <div className="flex items-center justify-center font-mono h-2/6 w-full mt-8">
+                    <h1 className="lg:text-2xl md:text-xl sm:text-sm text-[15px] hover:text-blue-500">Your cart is currently empty.</h1>
+                  </div>
                 </div>
               </div>
+
+
             </div>
-
-
           </div>
         </div>
-        <div className="lg:flex items-center w-full justify-center  bg-black/80 text-white md:flex hidden">
-          <ul className="menu menu-horizontal lg:px-1 px-0 bg- dark:bg-">
+        {/* <div className="lg:flex items-center w-full justify-center bg-black  text-white md:flex hidden">
+          <ul className="menu menu-horizontal lg:px-1 px-0 bg- dark:bg- ">
+            {navLink}
+          </ul>
+        </div> */}
+        <div
+          className={`fixed left-0 w-full italic
+            transition-all duration-300
+            ${isSticky
+              ? "bg-black/40 backdrop-blur-3xl  text-white"
+              : "bg-black text-white dark:bg-primary-dark dark:text-white"
+            }
+            ${showNavbar ? "top-16" : "top-0 "}
+            lg:flex md:flex hidden justify-center`}
+        >
+          <ul className="menu menu-horizontal lg:px-1 px-0">
             {navLink}
           </ul>
         </div>

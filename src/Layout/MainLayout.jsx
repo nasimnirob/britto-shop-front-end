@@ -69,12 +69,13 @@
 
 
 
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import Navbar from "../Component/Shared/Navbar";
 import Footer from "../Component/Shared/Footer";
 import { useEffect, useState } from "react";
 
 import RouteLoader from "../Component/RouteLoader";
+import ScrollManager from "../Component/ScrollManager";
 
 const MainLayout = () => {
   const [openCart, setOpenCart] = useState(false);
@@ -99,10 +100,10 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
 
-      {/* ✅ Loader */}
+      {/* Loader */}
       {showLoader && <RouteLoader loading={loading} />}
 
-      {/* ✅ Navbar */}
+      {/* Navbar */}
       <div className="lg:mt-[105px] md:mt-[105px] mt-[66px]">
         <Navbar
           openCart={openCart}
@@ -114,19 +115,22 @@ const MainLayout = () => {
         />
       </div>
 
-      {/* ✅ Overlay */}
+      {/* Overlay */}
       {(openCart || openProfile || open) && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"></div>
       )}
 
-      {/* ✅ Main Content */}
+      {/* Main Content */}
       <main className="flex-grow flex justify-center overflow-x-clip">
         <div className="w-full max-w-[1524px] mx-auto">
           <Outlet />
         </div>
       </main>
-
-      {/* ✅ Footer */}
+      <ScrollRestoration
+        getKey={(location) => location.key}
+      />
+      {/* <ScrollManager /> */}
+      {/* Footer */}
       <Footer />
     </div>
   );

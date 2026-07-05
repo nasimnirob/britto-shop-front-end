@@ -23,14 +23,11 @@ import SiteSettings from "../Dashboard/Pages/SiteSettings";
 
 const Router = createBrowserRouter([
     {
+        id: "root",
         path: '/',
         element: <MainLayout />,
         errorElement: <Error />,
         children: [
-            // {
-            //     path: '/',
-            //     element: <Home />
-            // },
             {
                 path: '/',
                 element: <Home />

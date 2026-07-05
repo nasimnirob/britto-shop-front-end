@@ -4,12 +4,12 @@ import { Parallax } from "react-parallax";
 const PageCover = ({ img, tittle, description }) => {
   const parallaxRef = useRef(null);
 
-  useEffect(() => {
-    // force a re-render or recalculation on mount
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 500);
-  }, []);
+  // useEffect(() => {
+  //   // force a re-render or recalculation on mount
+  //   setTimeout(() => {
+  //     window.dispatchEvent(new Event("resize"));
+  //   }, 500);
+  // }, []);
 
   return (
     <Parallax

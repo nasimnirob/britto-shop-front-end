@@ -578,7 +578,7 @@
 
 
 
-
+// ``````````````````````````````````````````````````````````````Select Component`````````````````````````````````````````````````````````````````````````
 
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -743,3 +743,329 @@ const Banner = () => {
 };
 
 export default Banner;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useEffect, useRef, useState } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Autoplay, Thumbs } from "swiper/modules";
+// import Vibrant from "node-vibrant/browser";
+
+// import "swiper/css";
+// import "swiper/css/thumbs";
+
+// const images = [
+//   "https://i.ibb.co.com/zWs5rhyD/cc9973b9183688b983c16e1891dcceb0.jpg",
+// ];
+
+// const Banner = () => {
+//   const swiperRef = useRef(null);
+//   const clickTimeRef = useRef([]);
+//   const restoreSpeedRef = useRef(null);
+
+//   const [initAnim, setInitAnim] = useState(true);
+//   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+//   // Current Slide
+//   const [activeIndex, setActiveIndex] = useState(0);
+
+//   // Ambient Colors
+//   const [ambient, setAmbient] = useState({
+//     vibrant: "#222222",
+//     dark: "#111111",
+//     light: "#555555",
+//   });
+
+//   // Get Colors from current image
+//   useEffect(() => {
+//     let ignore = false;
+
+//     Vibrant.from(images[activeIndex])
+//       .getPalette()
+//       .then((palette) => {
+//         if (ignore) return;
+
+//         setAmbient({
+//           vibrant: palette.Vibrant?.hex || "#222222",
+//           dark: palette.DarkVibrant?.hex || "#111111",
+//           light: palette.LightVibrant?.hex || "#555555",
+//         });
+//       })
+//       .catch(() => {
+//         setAmbient({
+//           vibrant: "#222222",
+//           dark: "#111111",
+//           light: "#555555",
+//         });
+//       });
+
+//     return () => {
+//       ignore = true;
+//     };
+//   }, [activeIndex]);
+
+//   // Dynamic Slide Speed
+//   const getDynamicSpeed = () => {
+//     const now = Date.now();
+
+//     clickTimeRef.current = clickTimeRef.current.filter(
+//       (t) => now - t < 1000
+//     );
+
+//     const count = clickTimeRef.current.length;
+
+//     if (count === 0) return 700;
+//     if (count <= 2) return 400;
+//     if (count <= 5) return 100;
+
+//     return 100;
+//   };
+
+//   // Arrow Click
+//   const handleClick = (dir) => {
+//     clickTimeRef.current.push(Date.now());
+
+//     const speed = getDynamicSpeed();
+
+//     const swiper = swiperRef.current;
+
+//     if (!swiper) return;
+
+//     swiper.params.speed = speed;
+
+//     swiper.autoplay.stop();
+
+//     if (dir === "next") {
+//       swiper.slideNext(speed);
+//     } else {
+//       swiper.slidePrev(speed);
+//     }
+
+//     if (restoreSpeedRef.current) {
+//       clearTimeout(restoreSpeedRef.current);
+//     }
+
+//     restoreSpeedRef.current = setTimeout(() => {
+//       if (swiperRef.current) {
+//         swiperRef.current.params.speed = 700;
+//       }
+//     }, 1000);
+
+//     setTimeout(() => {
+//       swiper.autoplay.start();
+//     }, 4000);
+//   };
+//   return (
+//   <div className="relative w-full py-12 overflow-hidden">
+
+//     {/* LEFT GLOW */}
+//     <div
+//       className="absolute left-0 top-0 w-1/2 h-full pointer-events-none transition-all duration-700"
+//       style={{
+//         background: `radial-gradient(circle at left,
+//           ${ambient.vibrant},
+//           transparent 70%)`,
+//         filter: "blur(180px)",
+//         opacity: 0.7,
+//       }}
+//     />
+
+//     {/* RIGHT GLOW */}
+//     <div
+//       className="absolute right-0 top-0 w-1/2 h-full pointer-events-none transition-all duration-700"
+//       style={{
+//         background: `radial-gradient(circle at right,
+//           ${ambient.dark},
+//           transparent 70%)`,
+//         filter: "blur(180px)",
+//         opacity: 0.7,
+//       }}
+//     />
+
+//     {/* TOP GLOW */}
+//     <div
+//       className="absolute top-0 left-0 w-full h-40 pointer-events-none transition-all duration-700"
+//       style={{
+//         background: `linear-gradient(${ambient.light},transparent)`,
+//         filter: "blur(120px)",
+//         opacity: .45,
+//       }}
+//     />
+
+//     {/* BOTTOM GLOW */}
+//     <div
+//       className="absolute bottom-0 left-0 w-full h-40 pointer-events-none transition-all duration-700"
+//       style={{
+//         background: `linear-gradient(transparent,${ambient.dark})`,
+//         filter: "blur(120px)",
+//         opacity: .45,
+//       }}
+//     />
+
+//     {/* CONTENT */}
+//     <div className="relative z-10">
+
+//       <div className="relative group rounded-xl overflow-hidden">
+
+//         {/* Background Blur Image */}
+//         <img
+//           src={images[activeIndex]}
+//           alt=""
+//           className="
+//             absolute
+//             inset-0
+//             w-full
+//             h-full
+//             object-cover
+//             scale-125
+//             blur-[120px]
+//             brightness-125
+//             saturate-150
+//             opacity-50
+//             transition-all
+//             duration-700
+//           "
+//         />
+
+//         <div
+//           className={initAnim ? "animate-slide-in-down relative z-10" : "relative z-10"}
+//           onAnimationEnd={() => setInitAnim(false)}
+//         >
+
+//           <Swiper
+//             modules={[Autoplay, Thumbs]}
+//             loop={true}
+//             speed={900}
+//             autoplay={{
+//               delay: 4000,
+//               disableOnInteraction: false,
+//               pauseOnMouseEnter: true,
+//             }}
+//             thumbs={{ swiper: thumbsSwiper }}
+//             onSwiper={(swiper) => {
+//               swiperRef.current = swiper;
+//             }}
+//             onSlideChange={(swiper) => {
+//               setActiveIndex(swiper.realIndex);
+//             }}
+//             className="w-full"
+//           >
+//             {images.map((img, i) => (
+//               <SwiperSlide key={i}>
+//                 <img
+//                   src={img}
+//                   alt={`slide-${i}`}
+//                   className="
+//                     w-full
+//                     object-cover
+//                     h-[20vh]
+//                     sm:h-[40vh]
+//                     md:h-[50vh]
+//                     lg:h-[60vh]
+//                     xl:h-[70vh]
+//                     2xl:h-[75vh]
+//                   "
+//                 />
+//               </SwiperSlide>
+//             ))}
+//           </Swiper>
+
+//         </div>
+
+//         {/* PREV */}
+//         <button
+//           onClick={() => handleClick("prev")}
+//           className="
+//             absolute
+//             left-5
+//             top-1/2
+//             -translate-y-1/2
+//             z-30
+//             opacity-0
+//             group-hover:opacity-100
+//             transition-all
+//             duration-300
+//             bg-black/70
+//             backdrop-blur-md
+//             px-4
+//             py-2
+//             rounded
+//             text-white
+//           "
+//         >
+//           ❮
+//         </button>
+
+//         {/* NEXT */}
+//         <button
+//           onClick={() => handleClick("next")}
+//           className="
+//             absolute
+//             right-5
+//             top-1/2
+//             -translate-y-1/2
+//             z-30
+//             opacity-0
+//             group-hover:opacity-100
+//             transition-all
+//             duration-300
+//             bg-black/70
+//             backdrop-blur-md
+//             px-4
+//             py-2
+//             rounded
+//             text-white
+//           "
+//         >
+//           ❯
+//         </button>
+
+//       </div>
+//                   {/* Thumbnail Swiper */}
+//       <Swiper
+//         modules={[Thumbs]}
+//         onSwiper={setThumbsSwiper}
+//         watchSlidesProgress={true}
+//         slidesPerView="auto"
+//         centeredSlides={true}
+//         spaceBetween={10}
+//         className="mt-4 w-full"
+//       >
+//         {images.map((img, i) => (
+//           <SwiperSlide
+//             key={i}
+//             style={{
+//               width: "14px",
+//             }}
+//           >
+//             <div
+//               className={`
+//                 h-1 rounded-full transition-all duration-500
+//                 ${
+//                   activeIndex === i
+//                     ? "bg-white w-12"
+//                     : "bg-white/40 w-3"
+//                 }
+//               `}
+//             />
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </div>
+//   </div>
+// );
+
+// };
+
+// export default Banner;
