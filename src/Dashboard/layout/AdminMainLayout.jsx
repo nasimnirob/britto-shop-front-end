@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../component/Sidebar";
 import TopNavbar from "../component/TopNavbar";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import logo from '../../../public/logo.png'
 
 const AdminMainLayout = () => {
@@ -67,7 +67,7 @@ const AdminMainLayout = () => {
                     width: isMobile ? 0 : sidebarWidth,
                 }}
             >
-                <div
+                <NavLink to='/'
                     className={`bg-gray-100 mt-3 flex items-center ${isSidebarOpen
                         ? "shadow-gray-100 shadow-[rgba(0,0,15,0.5)_0px_2px_0px_0px] pb-3"
                         : "pb-3 justify-center"
@@ -85,7 +85,10 @@ const AdminMainLayout = () => {
                             : "w-0 ml-0 opacity-0"
                             }`}
                     >
-                        Britto Shop                         </h5>                     </div>
+                        Britto Shop
+
+                    </h5>
+                </NavLink>
                 <Sidebar isSidebarOpen={isSidebarOpen} />
 
                 {/* Drag Handle */}

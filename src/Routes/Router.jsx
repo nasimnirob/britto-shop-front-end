@@ -16,6 +16,7 @@ import Dashboard from "../Dashboard/Pages/Dashboard";
 import User from "../Dashboard/Pages/User";
 import MainContent from "../Dashboard/component/MainContent";
 import SiteSettings from "../Dashboard/Pages/SiteSettings";
+import Profile from "../Pages/UsersAccount/UsersAccounts/Profile";
 
 
 
@@ -30,31 +31,38 @@ const Router = createBrowserRouter([
         children: [
             {
                 path: '/',
+                errorElement: <Error />,
                 element: <Home />
             },
             {
                 path: '/shop',
+                errorElement: <Error />,
                 element: <Product />,
                 // loader: ()=> fetch('/products.json')
             },
             {
                 path: '/cart',
+                errorElement: <Error />,
                 element: <Cart />
             },
             {
                 path: '/wishlist',
+                errorElement: <Error />,
                 element: <Wishlist />
             },
             {
                 path: '/category/:category',
+                errorElement: <Error />,
                 element: <OurCategory />
             },
             {
                 path: '/orders/:category',
+                errorElement: <Error />,
                 element: <Orders />
             },
             {
                 path: '/orders',
+                errorElement: <Error />,
                 element: <Navigate to="/orders/electronic" replace />,
             },
 
@@ -74,6 +82,12 @@ const Router = createBrowserRouter([
                 path: '/product/:id',
                 errorElement: <Error />,
                 element: <VariableProduct />
+            }
+            ,
+            {
+                path: '/profile',
+                errorElement: <Error />,
+                element: <Profile />
             }
             ,
 

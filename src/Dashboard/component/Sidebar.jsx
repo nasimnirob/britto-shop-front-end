@@ -25,17 +25,17 @@ const navItems = [
 
 const Sidebar = ({ isSidebarOpen }) => {
   return (
-    <div className="mt-[2px] h-screen bg-gray-100 p-1 overflow-y-auto">
-      <ul className="space-y-1 font-medium">
+    <div className="mt-[2px] h-screen bg-gray-100 overflow-y-auto">
+      <ul className="space-y-[1px] font-medium">
         {navItems.map(({ to, icon: Icon, label }) => (
           <li key={to}>
             <NavLink
               to={to}
               className={({ isActive }) =>
-                `flex items-center p-2 rounded-md transition-all duration-300 group
+                `flex items-center py-2 px-2 hover:text-blue-600 rounded- transition-all duration-300 group
                 ${
                   isActive
-                    ? "bg-gray-200 text-blue-600"
+                    ? "bg-black/5 text-blue-600"
                     : "bg-white hover:bg-gray-200"
                 }
                 ${isSidebarOpen ? "justify-start" : "justify-center"}`

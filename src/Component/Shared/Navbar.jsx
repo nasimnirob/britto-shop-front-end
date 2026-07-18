@@ -18,6 +18,7 @@ import LanguageSelector from "../Language/LanguageSelector";
 import { RxPerson } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import ScrollableList from "../ScrollableList";
+import Logo from "../Logo/Logo";
 
 const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setOpen }) => {
   const { user, logOut, loading } = useContext(AuthContext);
@@ -33,7 +34,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
   const [isSticky, setIsSticky] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-
+  const inputRef = useRef(null);
+  const boxRef = useRef(null);
   // console.log(open)
 
   const { t } = useTranslation();
@@ -91,6 +93,18 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
       })
       .catch((err) => console.error(err));
   };
+
+
+  const handleSearchOpen = () => {
+    setOpenSearch(true);
+  };
+
+  const handleTransitionEnd = () => {
+    if (openSearch && inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -411,10 +425,10 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                   ref={menuRef}
                   className={`lg:hidden md:hidden fixed top-0 left-0 h-screen 
                     lg:w-[505px] md:w-[240px] sm:w-[320px] w-[300px]
-                    z-40 bg-black/30 backdrop-blur-md
+                    z-40 
                     border border-gray-600 shadow-sm text-white
                     transform transition-transform duration-500 ease-in-out
-                    ${open ? "translate-x-0" : "-translate-x-full"}
+                    ${open ? "translate-x-0 bg-black/30 backdrop-blur-3xl" : "-translate-x-full"}
                   `}
                 >
                   < div className="flex flex-row  lg:hidden md:hidden pt-2.5 pl-2 pb-4 bg-black/20">
@@ -460,14 +474,15 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
               </div>
               <div className="flex flex-row ml-5  items-center lg:gap-3 md:gap-  w-full sm:px-5 md:px-2  lg:w-2/4 md:w-4/4">
                 <NavLink to="/" className="px- ">
-                  <div className="flex flex-col items-center w-fit text-center">
+                  {/* <div className="flex flex-col items-center w-fit text-center">
                     <span className="text-[13.5px] sm:text-base lg:text-xl hover:text-orange-400 uppercase ">
                       Britto Shop
                     </span>
                     <span className="font-normal text-[8.5px] sm:text-[10px] lg:text-[12.3px] text-inherit hover:text-orange-400 uppercase tracking-widest">
                       E C O M M E R C E
                     </span>
-                  </div>
+                  </div> */}
+                  <Logo />
                 </NavLink>
               </div>
             </div>
@@ -490,7 +505,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
             </div>
 
             <div className="navbar-end flex justify-end items-center lg:gap-3 md:gap-2 gap-2">
-              <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
+              {/* <div className="h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400">
                 <button onClick={() => setOpenSearch(prev => !prev)}>
                   <CiSearch className="w-10 h-10 rounded-full p-1 mt-0.5 hover:bg-black/10 dark:hover:bg-black/15" />
                 </button>
@@ -500,20 +515,67 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                 fixed top-0 left-0 w-full z-40
                 lg:hidden md:hidden
                 transition-all duration-300 ease-in-out
-                ${openSearch ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}
+                
+                ${openSearch ? "translate-x-0 opacity-100 bg-white/40 dark:bg-black/30 backdrop-blur-xl" : "-translate-x-full opacity-0 "}
               `}
               >
-                <div className="flex  items-center gap-2 px-4 py-3 bg-white dark:bg-primary-dark  dark:text-[#d9dadb] shadow-md">
+                <div className={`flex  items-center gap-2 px-4 py-3 w-2/2  dark:text-[#d9dadb] shadow-md`}>
                   <button onClick={() => setOpenSearch(false)}>
                     <TiArrowLeft className="text-2xl text-black dark:text-[#d9dadb]" />
                   </button>
                   <input
                     type="text"
                     placeholder="Search product..."
-                    className="font-poppins text-base w-1/2 px-4 py-2 rounded-full outline-none text-black dark:text-[#d9dadb] dark:bg-[#3B3D3E]"
+                    className="font-poppins text-base w-full px-4 py-2 rounded-full outline-none text-white bg-black/80 dark:text-[#d9dadb] dark:bg-[#3B3D3E]"
                     autoFocus
                   />
-                  
+                </div>
+              </div> */}
+
+              <div className="relative lg:hidden md:hidden">
+                {/* Search Button */}
+                <button
+                  onClick={handleSearchOpen}
+                  className="relative z-0 w-10 h-10 rounded-full p-0.5"
+                >
+                  <CiSearch
+                    className={`w-10 h-10 p-1 rounded-full transition-all duration-300
+                    ${openSearch
+                        ? " dark:text-white text-black"
+                        : "hover:bg-black/5 dark:hover:bg-[#2a2a2a]"
+                      }`}
+                  />
+                </button>
+
+                {/* Search Box */}
+                <div
+                  ref={boxRef}
+                  onTransitionEnd={handleTransitionEnd}
+                  className={`
+                    absolute -right-1 top-1/2 -translate-y-1/2
+                    origin-right
+                    flex items-center
+                    overflow-hidden
+                    rounded-full
+                    bg-[#F0F2F5] dark:bg-[#2a2a2a]
+                    shadow-xl
+                    transition-all duration-300 ease-out
+                    ${openSearch
+                      ? "w-[calc(100vw-9rem)] max-w-[750px] opacity-100 scale-100"
+                      : "w-10 opacity-0 scale-75 pointer-events-none"
+                    }
+                  `}
+                >
+                  <button onClick={() => setOpenSearch(false)} className="px-3.5">
+                    <TiArrowLeft className="text-2xl text-black dark:text-white" />
+                  </button>
+
+                  <input
+                    ref={inputRef}
+                    type="search"
+                    placeholder="Search"
+                    className="w-full bg-transparent py-2 pr-4 outline-none text-black dark:text-white placeholder:text-black/60 placeholder:font-poppins placeholder:clear font-poppins"
+                  />
                 </div>
               </div>
 
@@ -568,7 +630,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                 }
 
                 {/* Profile Button */}
-                <div className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400 "
+                <NavLink to='/profile' className=" h-16 px-0 -mb-4 -mt-4 lg:hidden md:hidden block py-2.5 hover:text-orange-400 "
                   onClick={handleProfileToggle}
                 >
                   <button className="">
@@ -589,7 +651,8 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                       </>
                     )}
                   </button>
-                </div>
+                </NavLink>
+
 
                 {/* Dropdown Panel — SHOW ON HOVER */}
                 <div
