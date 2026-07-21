@@ -7,10 +7,10 @@ const SiteSettings = () => {
   return (
     <div className="flex flex-col gap-2">
       <div>
-        <h2 className="lg:px-3 md:px-3 px-2 lg:py-2 md:py-2 py-1 text-2xl font-semibold bg-gray-50 shadow-sm text-gray-700 dark:text-white">Site Settings</h2>
+        <h2 className=" px-4 py-1 text-2xl font-semibold bg-gray-50 shadow-md text-gray-700 dark:text-white border-b dark:border-gray-700">Site Settings</h2>
       </div>
 
-      <div className='lg:px-3 md:px-3 px-2'>
+      <div className='px-4 '>
         <div className="flex items-center justify-between border-b dark:border-gray-700 pb-4">
           <div>
             <p className="font-medium text-gray-700 dark:text-white">Page Cover</p>
@@ -23,7 +23,7 @@ const SiteSettings = () => {
             onChange={() => setCoverEnabled(!coverEnabled)}
           />
         </div>
-       
+
       </div>
     </div>
   )

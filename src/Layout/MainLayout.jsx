@@ -98,7 +98,7 @@ const MainLayout = () => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-primary-dark">
 
       {/* Loader */}
       {showLoader && <RouteLoader loading={loading} />}
@@ -131,7 +131,7 @@ const MainLayout = () => {
       />
       {/* <ScrollManager /> */}
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -385,17 +385,17 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
         <div
           // className={`navbar mx-auto flex items-center justify-between max-w-[1524px] px- ${isSticky ? "text-white" : "text-black dark:text-white"
           //   }`}
-          className={`navbar mx-auto flex items-center justify-between  w-full fixed top-0 left-0 z-50 py-0
+          className={`navbar mx-auto flex items-center justify-between  w-full fixed top-0 left-0 z-50 py-0 px-0
             transition-all duration-300 ease-in-out 
-            ${showNavbar ? "translate-y-0 " : "-translate-y-full "}
+            ${showNavbar || openSearch ? "translate-y-0 " : "-translate-y-full "}
             ${isSticky
               ? "bg-black/40 backdrop-blur-xl  shadow-md text-white"
-              : "bg-transparent dark:bg-[#252728] text-black dark:text-white"
+              : "bg-white dark:bg-[#252728] text-black dark:text-white"
             }`}
         >
-          <div className="flex mx-auto justify-between items-center navbar max-w-[1524px]">
+          <div className="relative flex mx-auto justify-between items-center navbar max-w-[1524px]">
             <div className="navbar-start">
-              <div className="dropdown">
+              <div className="dropdown ">
                 <div
                   onClick={handleToggle}
                   role="button"
@@ -489,7 +489,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
 
             <div className="navbar-center hidden lg:flex md:block  items-center justify-center px-0.5">
               <div className="  lg:w-full  ">
-                <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border border-dashed border-[#fb923c] text-center justify-center">
+                <div className="flex items-center lg:w-96 w- rounded-[5px] overflow-hidden border-[0.00000000000001px] border-dashed border-[#fb923c] text-center justify-center">
                   <input
                     className={`font-extralight font-poppins w-full px-3 py-2 bg-black/5 placeholder:text-sm ${isSticky ? 'placeholder:text-gray-100 dark:placeholder:text-gray-300' : 'placeholder:text-gray-600 dark:placeholder:text-gray-200'} text-base outline-none ring-0 focus:outline-none rounded-l-[5px]`}
                     type="search"
@@ -532,7 +532,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                 </div>
               </div> */}
 
-              <div className="relative lg:hidden md:hidden">
+              <div className="relative z-50 lg:hidden md:hidden">
                 {/* Search Button */}
                 <button
                   onClick={handleSearchOpen}
@@ -561,12 +561,12 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                     shadow-xl
                     transition-all duration-300 ease-out
                     ${openSearch
-                      ? "w-[calc(100vw-9rem)] max-w-[750px] opacity-100 scale-100"
+                      ? "w-[calc(100vw-8rem)] max-w-[750px] opacity-100 scale-100"
                       : "w-10 opacity-0 scale-75 pointer-events-none"
                     }
                   `}
                 >
-                  <button onClick={() => setOpenSearch(false)} className="px-3.5">
+                  <button onClick={() => setOpenSearch(false)} className="px-3">
                     <TiArrowLeft className="text-2xl text-black dark:text-white" />
                   </button>
 
@@ -574,7 +574,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                     ref={inputRef}
                     type="search"
                     placeholder="Search"
-                    className="w-full bg-transparent py-2 pr-4 outline-none text-black dark:text-white placeholder:text-black/60 placeholder:font-poppins placeholder:clear font-poppins"
+                    className="w-full bg-transparent py-2 pr-4 outline-none text-black dark:text-white placeholder:text-black/60 dark:placeholder:text-gray-400 placeholder:font-poppins placeholder:clear font-poppins"
                   />
                 </div>
               </div>
@@ -582,7 +582,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
 
               <div
                 ref={profileRef}
-                className={`relative ml-1 flex items-center justify-center rounded-full h-10
+                className={`z-50 relative ml-1 flex items-center justify-center rounded-full h-10
                         ${openProfile && user ? " bg-black/15 dark:bg-black/10 w-10 h-10 " : " h-10 w-10 "}
                         `}
                 onMouseEnter={() => window.innerWidth >= 768 && setOpenProfile(true)}
@@ -745,7 +745,7 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
                 </div>
               </div>
 
-              <div ref={cartRef} className={`relative ml-1 flex items-center justify-center rounded-full
+              <div ref={cartRef} className={`z-50 relative ml-1 flex items-center justify-center rounded-full
                       ${openCart ? "bg-black/15 dark:bg-black/10 w-10 h-10" : "hover:bg-black/10 w-10 h-10 dark:hover:bg-black/15"}
                       `}
               //   onMouseEnter={() => window.innerWidth >= 768 && setOpenCart(true)}
@@ -803,6 +803,17 @@ const Navbar = ({ openCart, setOpenCart, openProfile, setOpenProfile, open, setO
 
 
             </div>
+            {/* Blur Overlay - navbar content blur করার জন্য */}
+            <div
+              onClick={() => setOpenSearch(false)}
+              className={`
+                lg:hidden md:hidden
+                absolute inset-0 z-40
+                backdrop-blur-md
+                transition-opacity duration-300
+                ${openSearch ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+              `}
+            />
           </div>
         </div>
         {/* <div className="lg:flex items-center w-full justify-center bg-black  text-white md:flex hidden">

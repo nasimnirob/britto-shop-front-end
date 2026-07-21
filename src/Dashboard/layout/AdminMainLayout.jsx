@@ -62,7 +62,7 @@ const AdminMainLayout = () => {
 
             {/* Sidebar */}
             <div
-                className="fixed left-0 top-0 h-screen bg-gray-100 z-40 overflow-hidden lg:block md:block sm:hidden hidden text-black select-none"
+                className="fixed left-0 top-0 h-screen bg-[#F2F4F7] dark:bg-primary-dark z-40 overflow-hidden lg:block md:block sm:hidden hidden text-black select-none"
                 style={{
                     width: isMobile ? 0 : sidebarWidth,
                 }}
@@ -100,7 +100,7 @@ const AdminMainLayout = () => {
 
             {/* Main Content */}
             <div
-                className="px-4 lg:pt-0 md:pt-0 pt-[70px] text-black min-h-screen "
+                className="bg-white dark:bg-primary-dark lg:pt-0 md:pt-0 pt-[70px] text-black min-h-screen "
                 style={{
                     marginLeft: isMobile ? 0 : sidebarWidth,
                 }}
